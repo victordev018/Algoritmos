@@ -26,6 +26,11 @@ export function calcule_capacidade_piscina(){
     return capacidade * 85 /100
 }
 
+export function get_string(msg){
+    let string = question(msg)
+    return string
+}
+
 export function get_number(msg){
     let number = Number(question(msg))
     return number

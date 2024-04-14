@@ -1,10 +1,10 @@
 import { get_number, get_string, print } from "./utils/io_utils.js"
+let somaValorProdutos = 0
 function main(){
 
     let opcao = 0
     let listaProdutos = ""
     let cont = 0
-    let somaValorProdutos = 0
     while(opcao != 3){
 
         print("\n------- Mercadinho Jota --------")
@@ -31,6 +31,7 @@ function inserirNovoProduto (cont, listaProdutos){
     let descricao = get_string(`Descricao (kg/l/u): `)
     let valor = get_number(`Valor R$: `)
     listaProdutos += `${cont} - ${item} (${descricao})\t\t R$ ${valor.toFixed(2)}\n`
+    somaValorProdutos += valor
     return listaProdutos
 }
 

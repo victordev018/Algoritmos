@@ -28,6 +28,8 @@ public class q_3224 {
 
         String resultado = verificarSeJonPodeIrAoMedico(ahDoJon, ahDoMedico);
 
+        System.out.println(resultado);
+
         in.close();
     }
     
@@ -37,8 +39,44 @@ public class q_3224 {
         String m = med;
 
         if (jon.equals(j.toLowerCase()) && med.equals(m.toLowerCase())){
-            
+            if (contadorDeA(j,m)){
+                if (verificarH(j,m)){
+                    return "go";
+                }
+            }
         }
         return "no";
     }
-}
+
+    // função prara verificar se existe a letra h no final das entradasd:
+    public static boolean verificarH(String j, String m){
+        int IndexultimaLetraJ = j.length() - 1;
+        int IndexultimaLetram = m.length() - 1;
+        if (j.charAt(IndexultimaLetraJ) == 'h' && m.charAt(IndexultimaLetram) == 'j'){
+            return true;
+        }
+        
+        return false;
+    }
+
+    //funcção para contar quantas letras 'a' existe em determinadas entradas:
+    public static boolean contadorDeA(String j,String m) {
+        int qtd_a_in_j = 0;
+        int qtd_a_in_m = 0;
+        for (String letra: j.toCharArray()){
+            if (letra.equals("a")){
+                qtd_a_in_j++;
+            }
+        }
+        for (String letra: m.toCharArray()){
+            if (letra.equals("a")){
+                qtd_a_in_m++;
+            }
+        }
+
+        if ((qtd_a_in_j <= 0 && qtd_a_in_j <= 999) && (qtd_a_in_m >= 0 && qtd_a_in_m <= 999)){
+            return true;
+        }
+        return false;
+    }
+ }

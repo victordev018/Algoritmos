@@ -5,7 +5,7 @@ function main(){
     let n = get_number("> enter a value n: ")
     let sinal = 1
     let soma = 0
-    let contador = 0
+    let contador = 1
 
     while (contador <= n){
         

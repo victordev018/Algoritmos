@@ -7,16 +7,11 @@ function main(){
     let soma = 0
     let contador = 0
 
-    while (contador <= n -1){
+    while (contador <= n){
         
-        let valor_a_somar = 0;
-        if (contador % 2 == 0){
-            valor_a_somar = ((1 + contador)/ (n - contador)) * sinal
-        }
-        else{
-            valor_a_somar = ((n - (1 + contador))/(1 + contador)) * sinal
-        }
+        let valor_a_somar = (1 / contador) * sinal
         soma += valor_a_somar;
+        console.log(`Adicionando ${valor_a_somar}. Total: ${soma}.`);
         sinal = sinal * -1;
         contador++
     }

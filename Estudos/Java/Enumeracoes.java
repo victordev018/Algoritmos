@@ -1,4 +1,4 @@
-package Estudos.Java;
+
 
 // Criando enumerção dos dias da semana:
 enum DaysWeek {

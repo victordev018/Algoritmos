@@ -1,4 +1,3 @@
-package Estudos.Java;
 import java.util.Scanner;
 public class hourConvert {
     public static void main(String[] args){

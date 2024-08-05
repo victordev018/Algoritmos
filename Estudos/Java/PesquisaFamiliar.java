@@ -34,5 +34,7 @@ public class PesquisaFamiliar{
         System.out.println("> media salários: R$ " + mediaSalarioFamilias);
         System.out.println("> media filhos: " + mediaFilhosFamilias);
         System.out.println("> Percentual de familias renda: " + porcentagemFamilias + "%");
+
+        in.close();
     }
 }

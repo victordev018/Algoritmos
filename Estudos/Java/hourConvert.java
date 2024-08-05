@@ -9,6 +9,8 @@ public class hourConvert {
         System.out.print("\nInforme a hora no formato (hh:mm:ssAM/PM): ");
         String hour2 = in.next();
         System.out.println(AmPmToMIlitary(hour2));
+        
+        in.close();
     }
     // função para converter um horário militar para horário am/pm
     public static String militaryTimerToAmPm(String hour){

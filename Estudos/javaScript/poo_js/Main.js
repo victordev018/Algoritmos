@@ -13,8 +13,16 @@ function main(){
     // sum price products with reduce
     const sumPriceProducts = Number(listProducts.reduce((sum, current) => sum + current.price, 0));
 
+    // biggest price with reduce 
+    const biggestPrice = Number(listProducts.reduce((bigger, current) => current.price > bigger ? current.price : bigger, 0));
+
+    // lowest price with reduce
+    const lowestPrice = Number(listProducts.reduce((lowest, current) => current.price < lowest ? current.price : lowest, listProducts[1].price));
+
     // output 
     console.log(`\n> sum price products: R$ ${sumPriceProducts}`);
+    console.log(`\n> Bigger price: R$ ${biggestPrice}`);
+    console.log(`\n> Lowest price: R$ ${lowestPrice}`);
     
 }
 

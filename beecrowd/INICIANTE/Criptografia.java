@@ -19,7 +19,7 @@ public class Criptografia {
         for (int i = 0; i <= quantidadeEntradas; i++){
             String entrada = in.nextLine();
             if (entrada.length() >= 1 && entrada.length() <= 1000){
-                entrada = deslocarTreisPosicoesDireita(entrada);
+                entrada = deslocarTresPosicoesDireita(entrada);
                 entrada = inverterString(entrada);
                 entrada = deslocarUmaPosicaoEsquerda(entrada);
                 listaEntradas.add(entrada);
@@ -60,7 +60,7 @@ public class Criptografia {
         return novaString;
     }
 
-    public static String deslocarTreisPosicoesDireita(String texto){
+    public static String deslocarTresPosicoesDireita(String texto){
         String novaString = "";
         for (int i = 0; i < texto.length(); i++){
             char caractereAtual = texto.charAt(i);

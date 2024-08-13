@@ -6,7 +6,15 @@ export function get_size_word(texto){
     return _tamanho;
 }
 
-export function pegar_vetor_split(file, final_texto){
+export function get_vector_of_text(text){
+    let vector = [];
+    for (let element of text){
+        vector.push(element);
+    }
+    return vector;
+}
+
+export function get_vector_split(file, final_texto){
     let vetor = [];
     let palavra = "";
     for (let letra of file){

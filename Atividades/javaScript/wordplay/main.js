@@ -1,6 +1,6 @@
 import {clear_screen, get_number, get_text, print} from "./utils/io_utiuls.js";
 import { load_file } from "./utils/functions_utils.js";
-import { get_size, pegar_vetor_split } from "./utils/string_utils.js";
+import { get_size_word, pegar_vetor_split, has_letter, get_size_vector } from "./utils/string_utils.js";
 
 function main(){
 
@@ -29,12 +29,36 @@ function main(){
                 show_words_20_characters(file_content);
                 break;
             case 3:
-                // palavras sem a letra e
+                words_without_letter_e(file_content);
                 break;
             case 4:
                 return;
         }
     }
+}
+
+// função para mostar palavras que não possuem a letra e
+function words_without_letter_e(file){
+    clear_screen();
+    if (file == null){
+        print("\n> arquivo para leitura inválido!");
+        print("\n> pressione enter para voltar: ");
+        get_text();
+        return;
+    }
+
+    print("\n> Palavras sem a letra e: \n")
+    const vetor_palavras = pegar_vetor_split(file, "\n");
+    let contador_palavras_sem_letra_e = 0;
+    for (let palavra of vetor_palavras){
+        if (!has_letter(palavra, 'e')){
+            contador_palavras_sem_letra_e++;
+            print(`> palavra ${contador_palavras_sem_letra_e}: `+ palavra);
+        }
+    }
+    const percent = (contador_palavras_sem_letra_e / get_size_vector(vetor_palavras)) * 100;
+    print(`\n> porcentagem de palavras sem letra e: ${percent.toFixed(1)} %`);
+    get_text("\n> pressione enter para voltar:");
 }
 
 // função para mostrar palavras com mais de 20 caracteres
@@ -51,7 +75,7 @@ function show_words_20_characters(file){
     const vetor_palavras = pegar_vetor_split(file, "\n");
     let contador_palavras_mais_20_caracteres = 0;
     for (let palavra of vetor_palavras){
-        if (get_size(palavra) > 20){
+        if (get_size_word(palavra) > 20){
             contador_palavras_mais_20_caracteres++;
             print(`> palavra ${contador_palavras_mais_20_caracteres}: ` + palavra);
         }

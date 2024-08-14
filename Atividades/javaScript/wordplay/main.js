@@ -80,7 +80,7 @@ function has_all_letters(file){
     get_text("\n> pressione enter para voltar: ");
 }
 
-// funç~qo que mostra a quantidade de palavras que possui as letras informadas
+// função que mostra a quantidade de palavras que possui as letras informadas
 function has_letters(file){
     clear_screen();
     if (file == null){
@@ -120,7 +120,7 @@ function prohibited_lyrics(file){
     get_text("\n> pressione enter para voltar: ");
 }
 
-// função para mostrar palavras que não possuem a letra e
+// função para mostrar palavras que não possuem a letra 'e'
 function words_without_letter_e(file){
     clear_screen();
     if (file == null){

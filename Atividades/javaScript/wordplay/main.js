@@ -1,5 +1,5 @@
 import {clear_screen, get_number, get_text, print} from "./utils/io_utiuls.js";
-import { load_file, count_appearances } from "./utils/functions_utils.js";
+import { load_file, count_appearances, count_word_alphabetical } from "./utils/functions_utils.js";
 import { get_size_word, get_vector_split, has_letter, get_size_vector, get_vector_of_text, uses_all_letters} from "./utils/string_utils.js";
 
 function main(){
@@ -13,7 +13,8 @@ function main(){
     > 4 - quantas palavras não possuem letras proibidas
     > 5 - palavras que possuem pelo menos uma das letras
     > 6 - palavras que possui todas as letras informadas
-    > 7 - fechar sistema`;
+    > 7 - palavras que aparecem em ordem alfabética
+    > 8 - fechar sistema`;
 
     // vetor de conteúdo do arquivo
     var file_content = null;
@@ -44,9 +45,29 @@ function main(){
                 has_all_letters(file_content);
                 break;
             case 7:
+                alphabetical_order(file_content);
+                break;
+            case 8:
                 return;
         }
     }
+}
+
+// função que mostra a quantidade de aparições de palavras que seguem a ordem alfabética
+function alphabetical_order(file){
+    clear_screen();
+    if (file == null){
+        print("\n> arquivo para leitura inválido!");
+        get_text("\n> pressione enter para voltar:");
+        return;
+    }
+
+    const vetor_palavras = get_vector_split(file, "\n");
+    const aparicoes_palavras_ordem_alfabetica = count_word_alphabetical(vetor_palavras);
+    const percent = (aparicoes_palavras_ordem_alfabetica/get_size_vector(vetor_palavras)) * 100;
+    print(`\n> quantidade de palavras que suas letras seguem ordem alfabetica: ${aparicoes_palavras_ordem_alfabetica}`);
+    print(`\n> porcentagem das mesmas: ${percent.toFixed(1)} %`);
+    get_text("\n> pressione enter para voltar: ");
 }
 
 // função que mostra a quantidade de palavras que aparecem todas as letras informadas

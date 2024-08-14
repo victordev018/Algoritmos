@@ -79,11 +79,11 @@ export function upper_case(text){
     return new_string;
 }
 
-function charToInt(character){
+export function charToInt(character){
     return character.charCodeAt();
 }
 
-function intToChar(code){
+export function intToChar(code){
     return String.fromCharCode(code);
 }
 

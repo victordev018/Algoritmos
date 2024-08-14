@@ -1,6 +1,29 @@
 import {readFileSync} from 'fs';
 import { print, get_text, clear_screen } from './io_utiuls.js';
-import {upper_case} from "./string_utils.js"
+import {upper_case, charToInt} from "./string_utils.js"
+
+// função que retorna a quantidade de aparições de palavras que suas letra seguem ordem alfabética
+export function count_word_alphabetical(word_vector){
+    let appearances = 0;
+    for (let word of word_vector){
+        if (is_abecedarian(word)){
+            appearances++;
+        }
+    }
+    return appearances;
+}
+
+// função que verifica se uma dada palavra segue a ordem alfabética
+export function is_abecedarian(word){
+    let letter = word[0];
+    for (let character of word){
+        if (charToInt(upper_case(character)) < charToInt(upper_case(letter))){
+            return false;
+        }
+        letter = character;
+    }
+    return true;
+}
 
 // função que abre um arquivo e retorna um vetor com cada palavra
 export function load_file(){

@@ -1,20 +1,11 @@
-import {clear_screen, get_number, get_text, print} from "./utils/io_utiuls.js";
-import { load_file, count_appearances, count_word_alphabetical } from "./utils/functions_utils.js";
+import {clear_screen, get_number, get_text, print} from "./utils/io_utils.js";
+import { load_file, count_appearances, count_word_alphabetical, show_menu } from "./utils/functions_utils.js";
 import { get_size_word, get_vector_split, has_letter, get_size_vector, get_vector_of_text, uses_all_letters} from "./utils/string_utils.js";
 
 function main(){
 
     // string com o menu
-    const menu = `
-    ---------------------- wordplay ----------------------
-    > 1 - carregar arquivo
-    > 2 - mostar palavras com mais de 20 caracteres
-    > 3 - mostar palavras sem a letra e
-    > 4 - quantas palavras não possuem letras proibidas
-    > 5 - palavras que possuem pelo menos uma das letras
-    > 6 - palavras que possui todas as letras informadas
-    > 7 - palavras que aparecem em ordem alfabética
-    > 8 - fechar sistema`;
+    const menu = show_menu();
 
     // vetor de conteúdo do arquivo
     var file_content = null;
@@ -22,8 +13,7 @@ function main(){
     while(true){
         
         clear_screen();
-        print(menu);
-        let opcao = get_number("\n> Ecolha uma opcao: ");
+        let opcao = get_number(menu);
 
         switch (opcao){
             case 1:
@@ -48,6 +38,7 @@ function main(){
                 alphabetical_order(file_content);
                 break;
             case 8:
+                print("Saindo...")
                 return;
         }
     }
@@ -129,7 +120,7 @@ function prohibited_lyrics(file){
     get_text("\n> pressione enter para voltar: ");
 }
 
-// função para mostar palavras que não possuem a letra e
+// função para mostrar palavras que não possuem a letra e
 function words_without_letter_e(file){
     clear_screen();
     if (file == null){

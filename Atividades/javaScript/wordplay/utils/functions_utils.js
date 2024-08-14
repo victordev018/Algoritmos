@@ -1,6 +1,21 @@
 import {readFileSync} from 'fs';
-import { print, get_text, clear_screen } from './io_utiuls.js';
+import { print, get_text, clear_screen } from './io_utils.js';
 import {upper_case, charToInt} from "./string_utils.js"
+
+// função que exibe o menu inicial
+export function show_menu(){
+    return `
+    ---------------------- wordplay ----------------------
+    > 1 - carregar arquivo
+    > 2 - mostrar palavras com mais de 20 caracteres
+    > 3 - mostrar palavras sem a letra e
+    > 4 - quantas palavras nao possuem letras proibidas
+    > 5 - palavras que possuem pelo menos uma das letras
+    > 6 - palavras que possui todas as letras informadas
+    > 7 - palavras que aparecem em ordem alfabetica
+    > 8 - fechar sistema
+    \n> Ecolha uma opcao: `;
+}
 
 // função que retorna a quantidade de aparições de palavras que suas letra seguem ordem alfabética
 export function count_word_alphabetical(word_vector){
@@ -34,7 +49,7 @@ export function load_file(){
         return file;
     }
     catch(erro){
-        print("Erro - invalid file");
+        print("Erro - arquivo inválidoS!");
     };
 }
 
@@ -42,14 +57,15 @@ export function load_file(){
 export function count_appearances(vetor_palavras, vetor_letras){
     let aparicoes = 0;
     for (let palavra of vetor_palavras){
-        if (word_conatain_letter(palavra, vetor_letras)){
+        if (word_contain_letter(palavra, vetor_letras)){
             aparicoes++;
         }
     }
     return aparicoes;
 }
 
-export function word_conatain_letter(word, vector_letter){
+// função que verifica se uma palavra contém alguma das letras que veio como parâmetro
+export function word_contain_letter(word, vector_letter){
     for (let character of word){
         if (character_is_in(character, vector_letter)){
             return true;
@@ -58,6 +74,7 @@ export function word_conatain_letter(word, vector_letter){
     return false;
 }
 
+// função que verifica se um caracter está presente em um vetor de letras
 export function character_is_in(character, vector_letter){
     for (let letter of vector_letter){
         if (upper_case(letter) == upper_case(character)){

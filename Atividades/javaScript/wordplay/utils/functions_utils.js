@@ -16,10 +16,10 @@ export function load_file(){
 }
 
 // função que conta as aparições de caracters em uma string
-export function count_appearances(vetor_palavras, vetor_letras_proibidas){
+export function count_appearances(vetor_palavras, vetor_letras){
     let aparicoes = 0;
     for (let palavra of vetor_palavras){
-        if (word_conatain_letter(palavra, vetor_letras_proibidas)){
+        if (word_conatain_letter(palavra, vetor_letras)){
             aparicoes++;
         }
     }

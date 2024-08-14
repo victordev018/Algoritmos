@@ -6,12 +6,13 @@ function main(){
 
     // string com o menu
     const menu = `
-    ------------------- wordplay -------------------
+    ---------------------- wordplay ----------------------
     > 1 - carregar arquivo
     > 2 - mostar palavras com mais de 20 caracteres
     > 3 - mostar palavras sem a letra e
-    > 4 - letras proibidas
-    > 5 - fechar sistema`;
+    > 4 - quantas palavras não possuem letras proibidas
+    > 5 - quantas palavras possuem uma sequencia de letras
+    > 6 - fechar sistema`;
 
     // vetor de conteúdo do arquivo
     var file_content = null;
@@ -36,21 +37,43 @@ function main(){
                 prohibited_lyrics(file_content);
                 break;
             case 5:
+                has_letters(file_content);
+                break;
+            case 6:
                 return;
         }
     }
+}
+
+// funç~qo que mostra a quantidade de palavras que possui as letras informadas
+function has_letters(file){
+    clear_screen();
+    if (file == null){
+        print("\n> arquivo para leitura inválido!");
+        get_text("\n> pressione enter para voltar:");
+        return;
+    }
+
+    const letras_informadas = get_text("\n> Iforme a sequencia de letras (ex: abeis): ");
+    const vetor_letras_informadas = get_vector_of_text(letras_informadas);
+    const vetor_palavras = get_vector_split(file, "\n");
+    const aparicoes_letras_nas_palavras = count_appearances(vetor_palavras, vetor_letras_informadas);
+    const percent = (aparicoes_letras_nas_palavras / get_size_vector(vetor_palavras)) * 100; 
+    print(`\n> quantidade de palavras que contem as letras informadas: ${aparicoes_letras_nas_palavras}`);
+    print(`\n> porcentagem das palavras que contem as letras: ${percent.toFixed(1)} %`);
+    get_text("\n> pressione enter para voltar: ");
 }
 
 // função que mostra a quantidade de palavavras que não possui as letras proibidas
 function prohibited_lyrics(file){
     clear_screen();
     if (file == null){
-        print("\n ");
+        print("\n arquivo para leitura inválido!");
         get_text("> pressione enter para voltar:");
         return;
     }
 
-    const letras_proibidas = get_text("\n> Informe a sequencia de palavras (ex: abeis): ");
+    const letras_proibidas = get_text("\n> Informe a sequencia de letras (ex: abeis): ");
     const vetor_letras_proibidas = get_vector_of_text(letras_proibidas);
     const vetor_palavras = get_vector_split(file, "\n");
     const aparicoes_letras_proibidas = count_appearances(vetor_palavras, vetor_letras_proibidas);

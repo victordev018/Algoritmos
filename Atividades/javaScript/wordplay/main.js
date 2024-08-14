@@ -1,6 +1,6 @@
 import {clear_screen, get_number, get_text, print} from "./utils/io_utiuls.js";
 import { load_file, count_appearances } from "./utils/functions_utils.js";
-import { get_size_word, get_vector_split, has_letter, get_size_vector, get_vector_of_text } from "./utils/string_utils.js";
+import { get_size_word, get_vector_split, has_letter, get_size_vector, get_vector_of_text, uses_all_letters} from "./utils/string_utils.js";
 
 function main(){
 
@@ -11,8 +11,9 @@ function main(){
     > 2 - mostar palavras com mais de 20 caracteres
     > 3 - mostar palavras sem a letra e
     > 4 - quantas palavras não possuem letras proibidas
-    > 5 - quantas palavras possuem uma sequencia de letras
-    > 6 - fechar sistema`;
+    > 5 - palavras que possuem pelo menos uma das letras
+    > 6 - palavras que possui todas as letras informadas
+    > 7 - fechar sistema`;
 
     // vetor de conteúdo do arquivo
     var file_content = null;
@@ -40,9 +41,31 @@ function main(){
                 has_letters(file_content);
                 break;
             case 6:
+                has_all_letters(file_content);
+                break;
+            case 7:
                 return;
         }
     }
+}
+
+// função que mostra a quantidade de palavras que aparecem todas as letras informadas
+function has_all_letters(file){
+    clear_screen();
+    if (file == null){
+        print("\n> arquivo para leitura inválido!");
+        get_text("\n> pressione enter para voltar:");
+        return;
+    }
+
+    const letras_informadas = get_text("\n> Iforme a sequencia de letras (ex: abeis): ");
+    const vetor_letras_informadas = get_vector_of_text(letras_informadas);
+    const vetor_palavras = get_vector_split(file, "\n");
+    const aparicoes_letras_nas_palavras = uses_all_letters(vetor_palavras, vetor_letras_informadas);
+    const percent = (aparicoes_letras_nas_palavras / get_size_vector(vetor_palavras)) * 100; 
+    print(`\n> quantidade de palavras que contem as letras informadas: ${aparicoes_letras_nas_palavras}`);
+    print(`\n> porcentagem das palavras que contem as letras: ${percent.toFixed(1)} %`);
+    get_text("\n> pressione enter para voltar: ");
 }
 
 // funç~qo que mostra a quantidade de palavras que possui as letras informadas
@@ -59,7 +82,7 @@ function has_letters(file){
     const vetor_palavras = get_vector_split(file, "\n");
     const aparicoes_letras_nas_palavras = count_appearances(vetor_palavras, vetor_letras_informadas);
     const percent = (aparicoes_letras_nas_palavras / get_size_vector(vetor_palavras)) * 100; 
-    print(`\n> quantidade de palavras que contem as letras informadas: ${aparicoes_letras_nas_palavras}`);
+    print(`\n> quantidade de palavras que contem todas as letras informadas: ${aparicoes_letras_nas_palavras}`);
     print(`\n> porcentagem das palavras que contem as letras: ${percent.toFixed(1)} %`);
     get_text("\n> pressione enter para voltar: ");
 }

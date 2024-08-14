@@ -1,3 +1,33 @@
+export function uses_all_letters(words_vector, letters_vector){
+    let word_that_uses_all_letters = 0;
+    for (let word of words_vector){
+        if (contains_all(word, letters_vector)){
+            word_that_uses_all_letters++;
+        }
+    }
+    return word_that_uses_all_letters;
+}
+
+export function contains_all(word, letters){
+    const expected_quantity = get_size_vector(letters);
+    let appearances = 0;
+    for (let letter of word){
+        if (letter_is_in(letter, letters)){
+            appearances++;
+        }
+    }
+    return appearances == expected_quantity;
+}
+
+export function letter_is_in(letter, vector_letters){
+    for (let _letter of vector_letters){
+        if (upper_case(_letter) == upper_case(letter)){
+            return true;
+        }
+    }
+    return false;
+}
+
 export function get_size_word(texto){
     let _tamanho = -1;
     for (let index of texto){

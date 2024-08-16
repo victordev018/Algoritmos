@@ -1,6 +1,6 @@
 import {clear_screen, get_number, get_text, print} from "./utils/io_utils.js";
-import { load_file, count_appearances, count_word_alphabetical, show_menu } from "./utils/functions_utils.js";
-import { get_size_word, get_vector_split, has_letter, get_size_vector, get_vector_of_text, uses_all_letters} from "./utils/string_utils.js";
+import { load_file, count_appearances, count_word_alphabetical, show_menu, get_word_palindrome, show_elements_of_vector } from "./utils/functions_utils.js";
+import { get_size_word, get_vector_split, has_letter, get_size_vector, get_vector_of_text, uses_all_letters, my_trim} from "./utils/string_utils.js";
 
 function main(){
 
@@ -38,9 +38,40 @@ function main(){
                 alphabetical_order(file_content);
                 break;
             case 8:
+                words_palindrome(file_content);
+                break;
+            case 9:
                 print("Saindo...")
                 return;
         }
+    }
+}
+
+// função que mostra as palavras palíndormas(palavras com no qual o seu inverso é igual a ela mesmo)
+function words_palindrome(file){
+    clear_screen();
+    if (file == null){
+        print("\n> arquivo para leitura inválido!");
+        get_text("\n> pressione enter para voltar:");
+        return
+    }
+
+    const vetor_palavras = get_vector_split(file, "\n");
+    const vetor_palavras_palindromes = get_word_palindrome(vetor_palavras);
+
+    if (get_size_vector(vetor_palavras_palindromes) > 0){
+        const quantidade_palavras_palindromas = get_size_vector(vetor_palavras_palindromes);
+        const quantidade_total_palavras = get_size_vector(vetor_palavras);
+        const percent = (quantidade_palavras_palindromas / quantidade_total_palavras) * 100;
+        print("\n> palavras palindromas: ")
+        show_elements_of_vector(vetor_palavras_palindromes);
+        print(`\n> quantidade de palavras: ${quantidade_palavras_palindromas}`);
+        print(`\n> porcentagem de palavras: ${percent.toFixed(2)} %`);
+        get_text("\n> pressione enter para voltar:");
+    }
+    else{
+        print("\n> o arquivo não possui palavras palindromss ._.")
+        get_text("\n> pressione enter para voltar:");
     }
 }
 
@@ -157,9 +188,9 @@ function show_words_20_characters(file){
     const vetor_palavras = get_vector_split(file, "\n");
     let contador_palavras_mais_20_caracteres = 0;
     for (let palavra of vetor_palavras){
-        if (get_size_word(palavra) > 20){
+        const tamanho_palavra = get_size_word(my_trim(palavra));
+        if (tamanho_palavra > 20){
             contador_palavras_mais_20_caracteres++;
-            const tamanho_palavra = get_size_word(palavra);
             print(`> palavra ${contador_palavras_mais_20_caracteres} -> tamanho(${tamanho_palavra}): ` + palavra);
         }
     }

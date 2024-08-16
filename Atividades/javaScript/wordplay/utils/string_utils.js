@@ -9,6 +9,18 @@ export function uses_all_letters(words_vector, letters_vector){
     return word_that_uses_all_letters;
 }
 
+// função semelhante ao trim, só que removerá de uma dada string a terminação \r
+export function my_trim(word){
+    let new_string = "";
+    for (let character of word){
+        if (character == "\r"){
+            continue;
+        }
+        new_string += character;
+    }
+    return new_string;
+}
+
 // função se uma dada palavra contém todas as letras de um dado vetor, retornando true ou false
 export function contains_all(word, letters){
     const expected_quantity = get_size_vector(letters);
@@ -33,7 +45,7 @@ export function letter_is_in(letter, vector_letters){
 
 // função que retorna o tamanho de uma string
 export function get_size_word(texto){
-    let _tamanho = -1;
+    let _tamanho = 0;
     for (let index of texto){
         _tamanho++;
     }

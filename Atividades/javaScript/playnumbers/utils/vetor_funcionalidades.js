@@ -1,0 +1,1 @@
+// funções com as funcionalidades da aplicação

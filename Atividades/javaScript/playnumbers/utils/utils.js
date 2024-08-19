@@ -1,0 +1,1 @@
+// funções de entrada e saida de dados

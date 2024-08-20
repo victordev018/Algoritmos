@@ -81,3 +81,29 @@ export function reset_vector(collection, default_value){
 
     return collection;
 }
+
+// função que recebe uma coleção de número e retorna o índice do maior valor
+export function get_index_of_highest_value(collection) {
+    let index_of_the_big = 0;
+
+    for (let index in collection) {
+        if ( collection[index] > collection[index_of_the_big]) {
+            index_of_the_big = index;
+        }
+    }
+
+    return index_of_the_big;
+}
+
+// função que recebe uma coleção de número e retorna o índice do menor valor
+export function get_index_of_lowest_value(collection) {
+    let index_of_the_lowest = 0;
+
+    for (let index in collection) {
+        if ( collection[index] < collection[index_of_the_lowest]) {
+            index_of_the_lowest = index;
+        }
+    }
+
+    return index_of_the_lowest;
+}

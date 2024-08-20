@@ -2,7 +2,7 @@
 
 // imports
 import { clear_screen, get_number, get_size_vector, print } from "./utils.js";
-import { create_vetor_automatically, create_vector_manually, reset_vector } from "./vetor_utils.js";
+import { create_vetor_automatically, create_vector_manually, reset_vector, get_index_of_highest_value, get_index_of_lowest_value } from "./vetor_utils.js";
 
 // menu principal de funções
 export function show_main_menu(){
@@ -12,6 +12,7 @@ export function show_main_menu(){
     > 2  - mostar todos os valores
     > 3  - resetar vetor
     > 4  - ver quantidade de elementos no vetor
+    > 5  - ver menor e maior valor com suas posicoes
     > 16 - Sair
     `;
     print(menu);
@@ -101,4 +102,23 @@ export function show_quantity_elements_of_vector(vector){
     // exibindo vetor e quantidade
     show_elements_of_vector(vector, "\n> vetor atual:")
     print(`\n> quantidade de itens: ${get_size_vector(vector)}`)
+}
+
+// opção 5 -> mostrar maior e menor valor juntamente com suas  posições
+export function show_highest_and_lowest(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo vetor
+    show_elements_of_vector(vector, "\n> vetor atual:");
+    const index_of_highest = get_index_of_highest_value(vector);
+    const index_of_lowest = get_index_of_lowest_value(vector);
+    const highest_value = vector[index_of_highest];
+    const lowest_value = vector[index_of_lowest];
+    print(`\n> maior valor: ${highest_value} -> posicao: ${index_of_highest}`);
+    print(`\n> menor valor: ${lowest_value} -> posicao: ${index_of_lowest}`);
 }

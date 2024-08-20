@@ -61,3 +61,12 @@ export function get_random_number(min, max){
 export function enter_to_go_back(message) {
     get_text(message);
 }
+
+// função para calcular tamanho de um vetor
+export function get_size_vector(vector){
+    let size = 0;
+    for (let element of vector){
+        size++;
+    }
+    return size;
+}

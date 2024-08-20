@@ -2,7 +2,7 @@
 
 // imports
 import { clear_screen, get_number, print, enter_to_go_back } from "./utils/utils.js";
-import { initialize_numeric_vector, show_main_menu } from "./utils/vetor_funcionalidades.js";
+import { initialize_numeric_vector, show_main_menu, show_elements_of_vector } from "./utils/vetor_funcionalidades.js";
 
 function main() {
 
@@ -24,7 +24,10 @@ function main() {
                 enter_to_go_back("\n> vetor criado com sucesso!\n> pressione enter para voltar: ");
                 break;
             case 2: 
-                
+                // mostar todos os valores do vetor
+                show_elements_of_vector(vector);
+                enter_to_go_back("\n> pressione enter para voltar: ");
+                break;
             case 16:
                 clear_screen();
                 print("saindo...")

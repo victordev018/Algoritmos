@@ -2,6 +2,11 @@
 
 import { question } from "readline-sync"
 
+// função para limpar tela
+export function clear_screen(){
+    console.clear();
+}
+
 // função para printar algo na tela
 export function print(message){
     console.log(message);
@@ -39,4 +44,19 @@ export function get_track_number(message, min, max){
         print("\n> o número está fora da faixa!")
         number = parseInt(question(message));
     }
+}
+
+// função para pedir uma entrada de texto
+export function get_text(message){
+    return question(message);
+}
+
+// função que retorna um valor aleatório dentro de uma faixa
+export function get_random_number(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// função para pressionar enter para voltar
+export function enter_to_go_back(message) {
+    get_text(message);
 }

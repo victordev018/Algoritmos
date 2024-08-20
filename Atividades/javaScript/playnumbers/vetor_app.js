@@ -2,7 +2,7 @@
 
 // imports
 import { clear_screen, get_number, print, enter_to_go_back } from "./utils/utils.js";
-import { initialize_numeric_vector, show_main_menu, show_elements_of_vector } from "./utils/vetor_funcionalidades.js";
+import { initialize_numeric_vector, show_main_menu, show_elements_of_vector, vector_reset } from "./utils/vetor_funcionalidades.js";
 
 function main() {
 
@@ -19,14 +19,18 @@ function main() {
         switch (opcao) {
             case 1:
                 // inicializar o vetor
-                clear_screen();
                 vector = initialize_numeric_vector();
                 enter_to_go_back("\n> vetor criado com sucesso!\n> pressione enter para voltar: ");
                 break;
             case 2: 
                 // mostar todos os valores do vetor
-                show_elements_of_vector(vector);
+                show_elements_of_vector(vector, "\n> todos elementos do atual vetor");
                 enter_to_go_back("\n> pressione enter para voltar: ");
+                break;
+            case 3:
+                // resetar vetor com um valor padrão
+                vector = vector_reset(vector);
+                enter_to_go_back("\n> vetor resetado com sucesso\n> pressione enter para voltar: ");
                 break;
             case 16:
                 clear_screen();

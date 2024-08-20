@@ -1,8 +1,8 @@
 // funções com as funcionalidades da aplicação
 
 // imports
-import { clear_screen, enter_to_go_back, get_number, get_size_vector, print } from "./utils.js";
-import { create_vetor_automatically, create_vector_manually } from "./vetor_utils.js";
+import { clear_screen, get_number, get_size_vector, print } from "./utils.js";
+import { create_vetor_automatically, create_vector_manually, reset_vector } from "./vetor_utils.js";
 
 // menu principal de funções
 export function show_main_menu(){
@@ -10,6 +10,7 @@ export function show_main_menu(){
     --------------------------> play numbers <--------------------------
     > 1  - inicializar vetor numerico
     > 2  - mostar todos os valores
+    > 3  - resetar vetor
     > 16 - Sair
     `;
     print(menu);
@@ -48,7 +49,8 @@ export function initialize_numeric_vector(){
     return vector;
 }
 
-export function show_elements_of_vector(vector){
+// opção 2 -> mostrar elementos do vetor
+export function show_elements_of_vector(vector, message){
     clear_screen();
     // verificando se o vetor passado possui conteúdo
     if (get_size_vector(vector) < 1){
@@ -57,8 +59,31 @@ export function show_elements_of_vector(vector){
     }
 
     // exibindo valores
-    print("\n> elementos do vetor: ")
-    for (let element of vector){
-        print(element);
+    print(message)
+    let string_of_elements = "["
+    for (let index in vector){
+        if (index == get_size_vector(vector) -1){
+            string_of_elements += ` ${vector[index]}`;
+            break;
+        }
+        string_of_elements += ` ${vector[index]},`;
     }
+    string_of_elements += " ]";
+    print(string_of_elements);
+}
+
+// opção 3 -> resetar valores de um vetor
+export function vector_reset(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    print("\n---------------> resetar vetor <---------------");
+    const default_value = get_number("\n> informe o valor padrao para o vetor: ")
+    vector = reset_vector(vector, default_value);
+    show_elements_of_vector(vector, "\n> vetor pós modificacao: ")
+    return vector;
 }

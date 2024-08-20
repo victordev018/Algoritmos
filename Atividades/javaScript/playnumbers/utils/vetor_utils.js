@@ -20,15 +20,15 @@ export function my_split(text, separator){
     return vector;
 }
 
-// função alternativa map(), que recevbe uma coleçâo e uma função de transformação para cada um de seus elementos
-export function map(collection, tranformer){
-    const new_vector = [];
+// função para converter uma coleção de strings para uma de inteiros
+export function collection_string_to_numbers(collection){
+      const new_vector  = [];
+      
+      for (let element of collection) {
+            new_vector.push(parseInt(element));
+      }
 
-    for (let element of collection){
-        new_vector.push(tranformer(element));
-    }
-
-    return new_vector;
+      return new_vector;
 }
 
 // função para criar um vetor numérico automaticamente com base em um tamanho, valor minimo e valor máximo
@@ -36,7 +36,7 @@ export function create_vetor_automatically() {
     clear_screen();
     const entries = get_text("\n> informe o tamanho, val minimo e val maximo (ex: 5 2 8): ");
     const vector_string = my_split(entries, " ");
-    const vector_numbers = map(vector_string, element => parseInt(element));
+    const vector_numbers = collection_string_to_numbers(vector_string);
 
     const size = vector_numbers[0];
     const min = vector_numbers[1];
@@ -56,7 +56,7 @@ export function create_vector_manually(){
     clear_screen();
     const entries = get_text("\n> informe o tamanho, val minimo e val maximo (ex: 5 2 8): ");
     const vector_string = my_split(entries, " ");
-    const vector_numbers = map(vector_string, element => parseInt(element));
+    const vector_numbers = collection_string_to_numbers(vector_string);
 
     const size = vector_numbers[0];
     const min = vector_numbers[1];
@@ -71,4 +71,13 @@ export function create_vector_manually(){
 
     return final_vector;
 
+}
+
+// função que recebe uma coleção e um valor padrão, devolve a coleção resetada com o todos seus valores sendo o valor padrão dado
+export function reset_vector(collection, default_value){
+    for (let index in collection) {
+        collection[index] = default_value;
+    }
+
+    return collection;
 }

@@ -18,10 +18,16 @@ function main() {
         // direcionando para o ambiente da escolha desejada
         switch (opcao) {
             case 1:
+                // inicializar o vetor
                 clear_screen();
                 vector = initialize_numeric_vector();
                 enter_to_go_back("\n> vetor criado com sucesso!\n> pressione enter para voltar: ");
-            case 2:
+                break;
+            case 2: 
+                
+            case 16:
+                clear_screen();
+                print("saindo...")
                 return
         }
     }

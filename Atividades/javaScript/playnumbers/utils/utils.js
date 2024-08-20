@@ -44,6 +44,7 @@ export function get_track_number(message, min, max){
         print("\n> o número está fora da faixa!")
         number = parseInt(question(message));
     }
+    return number;
 }
 
 // função para pedir uma entrada de texto

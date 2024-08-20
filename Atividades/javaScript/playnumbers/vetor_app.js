@@ -2,7 +2,7 @@
 
 // imports
 import { clear_screen, get_number, print, enter_to_go_back } from "./utils/utils.js";
-import { initialize_numeric_vector, show_main_menu, show_elements_of_vector, vector_reset } from "./utils/vetor_funcionalidades.js";
+import { initialize_numeric_vector, show_main_menu, show_elements_of_vector, vector_reset, show_quantity_elements_of_vector } from "./utils/vetor_funcionalidades.js";
 
 function main() {
 
@@ -32,9 +32,17 @@ function main() {
                 vector = vector_reset(vector);
                 enter_to_go_back("\n> vetor resetado com sucesso\n> pressione enter para voltar: ");
                 break;
+            case 4:
+                // ver quantidade de elementos em um vetor
+                show_quantity_elements_of_vector(vector);
+                enter_to_go_back("\n> pressione enter para voltar: ");
+                break;
+            case 5:
+                // ver Menor e Maior valores e suas posições
+                
             case 16:
                 clear_screen();
-                print("saindo...")
+                print("saindo...");
                 return
         }
     }

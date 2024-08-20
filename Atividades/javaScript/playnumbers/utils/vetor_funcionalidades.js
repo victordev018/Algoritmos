@@ -11,6 +11,7 @@ export function show_main_menu(){
     > 1  - inicializar vetor numerico
     > 2  - mostar todos os valores
     > 3  - resetar vetor
+    > 4  - ver quantidade de elementos no vetor
     > 16 - Sair
     `;
     print(menu);
@@ -86,4 +87,18 @@ export function vector_reset(vector){
     vector = reset_vector(vector, default_value);
     show_elements_of_vector(vector, "\n> vetor pós modificacao: ")
     return vector;
+}
+
+// opção 4 -> ver quantidade de elementos em um dado vetor
+export function show_quantity_elements_of_vector(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo vetor e quantidade
+    show_elements_of_vector(vector, "\n> vetor atual:")
+    print(`\n> quantidade de itens: ${get_size_vector(vector)}`)
 }

@@ -226,3 +226,14 @@ export function remove_appearences(vector, value){
     }
     return new_vector;
 }
+
+// função que remove um dado elemento de um dado vetor por um dado indice
+export function delete_by_index(vector, index){
+    const new_vector = [];
+    for (let _index in vector){
+        if (vector[_index] != vector[index]){
+            new_vector.push(vector[_index]);
+        }
+    }
+    return new_vector;
+}

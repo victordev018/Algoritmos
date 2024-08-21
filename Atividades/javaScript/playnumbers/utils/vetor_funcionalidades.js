@@ -7,7 +7,8 @@ import { create_vetor_automatically, create_vector_manually, reset_vector,
 get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
-collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences}
+collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences,
+delete_by_index}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -22,10 +23,11 @@ export function show_main_menu(){
     > 6  - somatorio dos valores do vetor
     > 7  - media dos valores
     > 8  - mostrar valores positivos e quantidade
-    > 9  - mostar valores negativos e quantidade
+    > 9  - mostrar valores negativos e quantidade
     > 10 - atualizar todos os valores por uma das regras
     > 11 - adicionar novos valores
     > 12 - remover itens por valor exato
+    > 13 - remover item por indice
     > 16 - Sair
     `;
     print(menu);
@@ -88,10 +90,10 @@ export function show_elements_of_vector(vector, message){
     let string_of_elements = "["
     for (let index in vector){
         if (index == get_size_vector(vector) -1){
-            string_of_elements += ` ${vector[index].toFixed(1)}`;
+            string_of_elements += ` ${vector[index]}`;
             break;
         }
-        string_of_elements += ` ${vector[index].toFixed(1)},`;
+        string_of_elements += ` ${vector[index]},`;
     }
     string_of_elements += " ]";
     print(string_of_elements);
@@ -410,4 +412,50 @@ export function remove_item_per_value(vector){
     show_elements_of_vector(vector, "\n> vetor pos remocao:")
     print("\n> valores removidos com sucesso!");
     return vector;
+}
+
+// opção 13 -> remover item por posição
+export function remove_item_by_index(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo vetor atual
+    show_elements_of_vector_with_index(vector, "\n> vetor atual");
+
+    // solicitando indice do elemento a ser deletado
+    const index_element_to_delete = get_number("\n> informe a posicao do item a ser deletado: ");
+
+    // verificando se o dado index existe
+    if (index_element_to_delete > get_size_vector(vector) -1){
+        print("\n> não possui esta posicao no vetor!");
+        return vector;
+    }
+
+    // deletando item do vetor
+    vector = delete_by_index(vector, index_element_to_delete);
+
+    // exibindo vetor pós deleção
+    show_elements_of_vector(vector, "\n> vetor pos remocao:");
+    print("\n> elemento deletado com sucesso:");
+    return vector;
+}
+
+// função para exibir valores de um dado vetor com seus indices
+export function show_elements_of_vector_with_index(vector, message){
+    // verificando se o vetor passado possui conteúdo
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo valores com seus indices
+    print(message + "\n");
+
+    for (let index in vector){
+        print(`posicao: ${index} -> valor: ${vector[index]}`);
+    }
 }

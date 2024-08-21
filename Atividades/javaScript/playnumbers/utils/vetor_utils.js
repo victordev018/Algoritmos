@@ -1,6 +1,6 @@
 // funções para manipulação de vetores
 
-import { get_text, get_random_number, clear_screen, print, get_track_number } from "./utils.js";
+import { get_text, get_random_number, clear_screen, print, get_track_number, get_number } from "./utils.js";
 
 // função semelhante ao split, faz o mesmo papel, recebe uma string e retorna um vetor
 export function my_split(text, separator){
@@ -195,4 +195,13 @@ export function has_negative_in_collection(collection){
         }
     }
     return false;
+} 
+
+// funçao para adicionar uma dada quantidade de elementos em um dado vetor
+export function add_elements(quantity, vector){
+    print("\n> insira os valores\n");
+    for (let i = 0; i < quantity; i++){
+        vector.push(get_number(`${i+1}. valor: `));
+    }
+    return vector;
 } 

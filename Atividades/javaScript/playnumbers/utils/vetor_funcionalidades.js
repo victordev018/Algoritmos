@@ -7,7 +7,7 @@ import { create_vetor_automatically, create_vector_manually, reset_vector,
 get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
-collection_string_to_numbers}
+collection_string_to_numbers, add_elements}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -24,6 +24,7 @@ export function show_main_menu(){
     > 8  - mostrar valores positivos e quantidade
     > 9  - mostar valores negativos e quantidade
     > 10 - atualizar todos os valores por uma das regras
+    > 11 - adicionar novos valores
     > 16 - Sair
     `;
     print(menu);
@@ -354,4 +355,28 @@ function update_values_negatives_by_radom(vector){
     show_elements_of_vector(vector, "\n> vetor pos modificacao:");
     return vector;
 
+}
+
+// opção 11 -> adicionar novos valores a um dado vetor
+export function add_new_values(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // soliciatando quantiade de elementos para adicionar
+    const quantity_values = get_text("\n> quantos novos valores deseja inserir? ");
+
+    // exibindo vetor antes da modificação
+    show_elements_of_vector(vector, "\n> vetor antes da insercao:");
+
+    // inserindo novos valores no vetor
+    vector = add_elements(quantity_values, vector);
+
+    // exibindo vetor pós inserção de novos valores
+    show_elements_of_vector(vector, "\n> vetor pos insercao:");
+
+    return vector;
 }

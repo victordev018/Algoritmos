@@ -1,6 +1,8 @@
 // funções de entrada e saida de dados
 
-import { question } from "readline-sync"
+// imports
+import { question } from "readline-sync";
+import {readFileSync} from "fs";
 
 // função para limpar tela
 export function clear_screen(){
@@ -69,4 +71,9 @@ export function get_size_vector(vector){
         size++;
     }
     return size;
+}
+
+// função para fazer leitura de um arquivo dado o nome
+export function load_file(name_file){
+    return readFileSync(name_file, "utf-8");
 }

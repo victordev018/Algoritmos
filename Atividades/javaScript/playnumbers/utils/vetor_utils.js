@@ -1,6 +1,6 @@
 // funções para manipulação de vetores
 
-import { get_text, get_random_number, clear_screen, print, get_track_number, get_number } from "./utils.js";
+import { get_text, get_random_number, clear_screen, print, get_track_number, get_number, load_file } from "./utils.js";
 
 // função semelhante ao split, faz o mesmo papel, recebe uma string e retorna um vetor
 export function my_split(text, separator){
@@ -22,13 +22,13 @@ export function my_split(text, separator){
 
 // função para converter uma coleção de strings para uma de inteiros
 export function collection_string_to_numbers(collection){
-      const new_vector  = [];
-      
-      for (let element of collection) {
-            new_vector.push(parseInt(element));
-      }
+    const new_vector  = [];
+    
+    for (let element of collection) {
+        new_vector.push(parseInt(element));
+    }
 
-      return new_vector;
+    return new_vector;
 }
 
 // função para criar um vetor numérico automaticamente com base em um tamanho, valor minimo e valor máximo
@@ -71,6 +71,22 @@ export function create_vector_manually(){
 
     return final_vector;
 
+}
+
+// função para criar um vetor numérico a a partir de um arquivo
+export function create_vector_of_file(){
+    clear_screen();
+    // solicitando nome do arquivo para o usuário
+    try{
+        const name_file = get_text("\n> informe o nome do arquivo: ");
+        const file = load_file(name_file);
+        let vector = get_vector_split_of_file(file, "\n");
+        return collection_string_to_numbers(vector);
+    } 
+    catch(error){
+        print("\n> arquivo não encontrado!");
+        return
+    }
 }
 
 // função que recebe uma coleção e um valor padrão, devolve a coleção resetada com o todos seus valores sendo o valor padrão dado
@@ -242,4 +258,22 @@ export function delete_by_index(vector, index){
 export function edit_by_index(vector, index, new_value){
     vector[index] = new_value;
     return vector;
+}
+
+// função parecida com o split, que retorna um vetor, dado um arquivo e o separador de elementos
+export function get_vector_split_of_file(file, separator){
+    file += "\n"
+    const new_vector = [];
+    let current_element = "";
+
+    for (let character of file){
+        if (character == separator){
+            new_vector.push(current_element);
+            current_element = "";
+            continue;
+        }
+        current_element += character;
+    }
+
+    return new_vector;
 }

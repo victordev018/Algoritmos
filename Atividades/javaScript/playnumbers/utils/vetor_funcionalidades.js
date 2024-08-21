@@ -8,7 +8,7 @@ get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collectio
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
 collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences,
-delete_by_index, edit_by_index}
+delete_by_index, edit_by_index, create_vector_of_file}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -50,7 +50,8 @@ export function show_menu_initializer_vector(){
     const menu = `
     --------- inicializacao de vetor ---------
     > 1 - criar automaticamente
-    > 2 - criar manualmente`;
+    > 2 - criar manualmente
+    > 3 - ler de um arquivo`;
     print(menu);
 }
 
@@ -72,6 +73,10 @@ export function initialize_numeric_vector(){
         case 2:
             clear_screen();
             vector = create_vector_manually();
+            break;
+        case 3:
+            clear_screen();
+            vector = create_vector_of_file();
             break;
     }
 

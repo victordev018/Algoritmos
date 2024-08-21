@@ -2,7 +2,7 @@
 
 // imports
 import { clear_screen, get_number, get_size_vector, print } from "./utils.js";
-import { create_vetor_automatically, create_vector_manually, reset_vector, get_index_of_highest_value, get_index_of_lowest_value } from "./vetor_utils.js";
+import { create_vetor_automatically, create_vector_manually, reset_vector, get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection } from "./vetor_utils.js";
 
 // menu principal de funções
 export function show_main_menu(){
@@ -13,6 +13,8 @@ export function show_main_menu(){
     > 3  - resetar vetor
     > 4  - ver quantidade de elementos no vetor
     > 5  - ver menor e maior valor com suas posicoes
+    > 6  - somatorio dos valores do vetor
+    > 7  - media dos valores
     > 16 - Sair
     `;
     print(menu);
@@ -121,4 +123,37 @@ export function show_highest_and_lowest(vector){
     const lowest_value = vector[index_of_lowest];
     print(`\n> maior valor: ${highest_value} -> posicao: ${index_of_highest}`);
     print(`\n> menor valor: ${lowest_value} -> posicao: ${index_of_lowest}`);
+}
+
+// opção 6 -> mostar somatório dos valores do vetor
+export function show_sum_vector(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo valores do vetor atual
+    show_elements_of_vector(vector, "\n> vetor atual:")
+    const sum = sum_elements_of_collection(vector);
+    print(`\n> O somatório dos elementos = ${sum}`);
+}
+
+// opção 7 -> mostar media dos valores de um dado vetor
+export function show_average_vector(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo valores do vetor
+    show_elements_of_vector(vector, "\n> vetor atual:");
+    const sum = sum_elements_of_collection(vector);
+    const quantity = get_size_vector(vector);
+    const average = sum / quantity;
+
+    print(`\n> Media: ${average.toFixed(2)}`);
 }

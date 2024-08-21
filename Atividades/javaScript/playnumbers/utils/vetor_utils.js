@@ -107,3 +107,14 @@ export function get_index_of_lowest_value(collection) {
 
     return index_of_the_lowest;
 }
+
+// função para somar valores de uma dada coleção de números
+export function sum_elements_of_collection(collection){
+    let sum = 0;
+
+    for (let element of collection) {
+        sum += element;
+    }
+
+    return sum;
+}

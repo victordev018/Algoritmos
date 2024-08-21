@@ -131,3 +131,16 @@ export function get_positives(collection) {
     
     return new_vector; 
 }
+
+// função que recebe uma coleção e retorna uma nova coleção com os valores negativos
+export function get_negatives(collection) {
+    const new_vector = [];
+
+    for (let number of collection) {
+        if (number < 0) {
+            new_vector.push(number);
+        }
+    }
+
+    return new_vector;
+}

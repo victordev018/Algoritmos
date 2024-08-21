@@ -1,6 +1,8 @@
 // funções para manipulação de vetores
 
+// imports
 import { get_text, get_random_number, clear_screen, print, get_track_number, get_number, load_file } from "./utils.js";
+import { writeFileSync } from "fs";
 
 // função semelhante ao split, faz o mesmo papel, recebe uma string e retorna um vetor
 export function my_split(text, separator){
@@ -276,4 +278,18 @@ export function get_vector_split_of_file(file, separator){
     }
 
     return new_vector;
+}
+
+// função que converte um dado vertor em uma string separando seus elementos por '\n'
+export function vector_to_string(vector, separator){
+    let new_string = "";
+    for (let element of vector){
+        new_string += element + separator
+    }
+    return new_string;
+}
+
+// função que escreve um dado conteúdo em um dado arquivo
+export function write_content_in_file(file_name, content){
+    writeFileSync(file_name, content);
 }

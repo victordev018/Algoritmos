@@ -7,7 +7,7 @@ import { initialize_numeric_vector, show_main_menu, show_elements_of_vector,
 vector_reset, show_quantity_elements_of_vector, show_highest_and_lowest, 
 show_sum_vector, show_average_vector, show_positive_numbers_of_collection,
 show_negative_numbers_of_collection, update_values, add_new_values,
-remove_item_per_value, remove_item_by_index, edit_value_per_position} 
+remove_item_per_value, remove_item_by_index, edit_value_per_position, write_vector_in_file} 
 from "./utils/vetor_funcionalidades.js";
 
 function main() {
@@ -94,7 +94,13 @@ function main() {
                 vector = edit_value_per_position(vector);
                 enter_to_go_back("\n> pressione enter para voltar: ");
                 break;
+            case 15:
+                // salvar valores em um arquivo
+                write_vector_in_file(vector);
+                enter_to_go_back("\n> arquivo salvo!\n> pressione enter para voltar:");
+                break;
             case 16:
+                write_vector_in_file(vector);
                 clear_screen();
                 print("saindo...");
                 return

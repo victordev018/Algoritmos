@@ -8,7 +8,7 @@ get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collectio
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
 collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences,
-delete_by_index, edit_by_index, create_vector_of_file}
+delete_by_index, edit_by_index, create_vector_of_file, vector_to_string, write_content_in_file}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -16,7 +16,7 @@ export function show_main_menu(){
     const menu = `
     --------------------------> play numbers <--------------------------
     > 1  - inicializar vetor numerico
-    > 2  - mostar todos os valores
+    > 2  - mostrar todos os valores
     > 3  - resetar vetor
     > 4  - ver quantidade de elementos no vetor
     > 5  - ver menor e maior valor com suas posicoes
@@ -29,6 +29,7 @@ export function show_main_menu(){
     > 12 - remover itens por valor exato
     > 13 - remover item por indice
     > 14 - editar valor por posicao
+    > 15 - salvar valores em um arquivo
     > 16 - Sair
     `;
     print(menu);
@@ -496,4 +497,17 @@ export function show_elements_of_vector_with_index(vector, message){
     for (let index in vector){
         print(`posicao: ${index} -> valor: ${vector[index]}`);
     }
+}
+
+// função que escreve as informações de um dado vetor em um arquivo
+export function write_vector_in_file(vector){
+    clear_screen();
+    // verificando se o vetor passado possui conteúdo
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    const content_to_file = vector_to_string(vector, "\n");
+    write_content_in_file("vetor.txt", content_to_file);
 }

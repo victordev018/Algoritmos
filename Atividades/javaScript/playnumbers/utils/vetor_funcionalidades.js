@@ -1,12 +1,16 @@
 // funções com as funcionalidades da aplicação
 
 // imports
-import { clear_screen, get_number, get_size_vector, print } from "./utils.js";
+import { clear_screen, get_number, get_size_vector, get_text, print } from "./utils.js";
 
 import { create_vetor_automatically, create_vector_manually, reset_vector, 
 get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
 get_positives, 
-get_negatives} from "./vetor_utils.js";
+get_negatives,
+multiply_elements,
+exponentiate_elements,
+my_split,
+fractionate_elements} from "./vetor_utils.js";
 
 // menu principal de funções
 export function show_main_menu(){
@@ -21,7 +25,19 @@ export function show_main_menu(){
     > 7  - media dos valores
     > 8  - mostrar valores positivos e quantidade
     > 9  - mostar valores negativos e quantidade
+    > 10 - atualizar todos os valores por uma das regras
     > 16 - Sair
+    `;
+    print(menu);
+}
+
+export function show_menu_update(){
+    const menu = `
+    --------------------> opcoes para atualizar <--------------------
+    > 1  - multiplicar por um valor
+    > 2  - elevar a um valor
+    > 3  - reduzir a uma fracao
+    > 4  - substituir negatipos por valor aleatorio em uma faixa
     `;
     print(menu);
 }
@@ -203,4 +219,101 @@ export function show_negative_numbers_of_collection(vector){
     // exibindo valores
     show_elements_of_vector(vector_negatives, "\n> vetor dos valores negativos:");
     print(`\n> quantiade de valores positivos: ${quntity_negative}`);
+}
+
+// opção 10 -> abrir menu de de regras de atualizações 
+export function update_values(vector){
+    clear_screen();
+    // exibindo menu
+    show_menu_update();
+    let opcao = get_number("\n> Escolha uma opcao: ")
+
+    // direcionando para a opção escolhida
+    switch (opcao) {
+        case 1:
+            vector = update_values_with_multiply(vector);
+            break;
+        case 2:
+            vector = update_values_with_exponentiation(vector);
+            break;
+        case 3:
+            vector = update_values_with_fractionate(vector);
+            break;
+        case 4:
+            // substituir negativos por aleatório
+    }
+
+    return vector;
+}
+
+// opcão 10.1 -> multiplicar todos valores de uma dada coleção por um valor
+function update_values_with_multiply(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // solicitando fator de multiplicação
+    const multiplication_factor = get_number("\n> informe o fator de multiplicacao: ");
+    
+    // exibindo vetor antes de alteralo
+    show_elements_of_vector(vector, "\n> vetor antes da modificação: ");
+
+    // modificando o vetor
+    vector = multiply_elements(vector, multiplication_factor);
+
+    // exibindo novo vetor
+    show_elements_of_vector(vector, "\n> vetor pos modificacao:")
+    return vector;
+}
+
+// opcao 10.2 -> exponenciar todos valores de uma dada coleção por um valor
+function update_values_with_exponentiation(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // solicitando fator de multiplicação
+    const exponentiation_value = get_number("\n> informe o fator de exponenciacao: ");
+    
+    // exibindo vetor antes de alteralo
+    show_elements_of_vector(vector, "\n> vetor antes da modificação: ");
+
+    // modificando o vetor
+    vector = exponentiate_elements(vector, exponentiation_value);
+
+    // exibindo novo vetor
+    show_elements_of_vector(vector, "\n> vetor pos modificacao:");
+    return vector;
+}
+
+// opção 10.3 -> fracionar todos os valores de uma dada coleção por um valor
+function update_values_with_fractionate(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // solicitando  fator de fracionamento
+    const fractionate_value_string = get_text("\n> informe o fator fracionário (ex: 1/2): ");
+    const fractionate_value_num = my_split(fractionate_value_string, "/");
+    const numerator = fractionate_value_num[0];
+    const denominator = fractionate_value_num[1];
+
+    // exibindo valores do vetor antes de modifica-lo
+    show_elements_of_vector(vector, "\n> vetor antes da modificacao: ");
+
+    // modificando valor
+    vector = fractionate_elements(vector, numerator/denominator);
+
+    // exibindo novo vetor
+    show_elements_of_vector(vector, "\n> vetor pos modificacao:")
+    return vector;
 }

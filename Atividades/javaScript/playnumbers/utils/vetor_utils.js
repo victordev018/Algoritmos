@@ -144,3 +144,32 @@ export function get_negatives(collection) {
 
     return new_vector;
 }
+
+// função que retorna uma coleção de valores de uma dada coleção multiplicados por um dado valor
+export function multiply_elements(collection, value) {
+
+    for (let index in collection) {
+        collection[index] = collection[index]  * value;
+    }
+
+    return collection;
+}
+
+// função que retorna uma coleção de valores de uma dada coleção exponenciando por um dado valor
+export function exponentiate_elements(collection, value) {
+
+    for (let index in collection) {
+        collection[index] = Math.pow(collection[index], value);
+    }
+
+    return collection;
+}
+
+// funçã que retorna um coleção de valores de uma dada coleção fracionado por um dado valor
+export function fractionate_elements(collection, value){
+    for (let index in collection){
+        collection[index] = collection[index] * value;
+    }
+
+    return collection;
+}

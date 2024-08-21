@@ -6,7 +6,8 @@ import { clear_screen, get_number, print, enter_to_go_back } from "./utils/utils
 import { initialize_numeric_vector, show_main_menu, show_elements_of_vector, 
 vector_reset, show_quantity_elements_of_vector, show_highest_and_lowest, 
 show_sum_vector, show_average_vector, show_positive_numbers_of_collection,
-show_negative_numbers_of_collection} 
+show_negative_numbers_of_collection,
+update_values} 
 from "./utils/vetor_funcionalidades.js";
 
 function main() {
@@ -67,6 +68,11 @@ function main() {
                 // mostrar valores negativos e suas quantidades
                 show_negative_numbers_of_collection(vector);
                 enter_to_go_back("\n> pressione enter para voltar:");
+                break;
+            case 10:
+                // opções de atualização de valores do vetor
+                vector = update_values(vector);
+                enter_to_go_back("\n> valores atualizados com sucesso!\n> pressione enter para voltar:");
                 break;
             case 16:
                 clear_screen();

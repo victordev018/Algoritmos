@@ -8,7 +8,7 @@ get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collectio
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
 collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences,
-delete_by_index}
+delete_by_index, edit_by_index}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -28,6 +28,7 @@ export function show_main_menu(){
     > 11 - adicionar novos valores
     > 12 - remover itens por valor exato
     > 13 - remover item por indice
+    > 14 - editar valor por posicao
     > 16 - Sair
     `;
     print(menu);
@@ -441,6 +442,38 @@ export function remove_item_by_index(vector){
     // exibindo vetor pós deleção
     show_elements_of_vector(vector, "\n> vetor pos remocao:");
     print("\n> elemento deletado com sucesso:");
+    return vector;
+}
+
+// opção 14 -> editar valor por posição
+export function edit_value_per_position(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo vetor atual
+    show_elements_of_vector_with_index(vector, "\n> vetor atual");
+
+    // solicitando indice do elemento a ser editado
+    const index_element_to_edit = get_number("\n> informe a posicao do item a ser deletado: ");
+
+    // verificando se o dado index existe
+    if (index_element_to_edit > get_size_vector(vector) -1){
+        print("\n> não possui esta posicao no vetor!");
+        return vector;
+    }
+
+    const new_value = get_number("\n> agora informe o novo valor: ");
+
+    // deletando item do vetor
+    vector = edit_by_index(vector, index_element_to_edit, new_value);
+
+    // exibindo vetor pós deleção
+    show_elements_of_vector(vector, "\n> vetor pos edicao:");
+    print("\n> elemento editado com sucesso:");
     return vector;
 }
 

@@ -227,7 +227,7 @@ export function remove_appearences(vector, value){
     return new_vector;
 }
 
-// função que remove um dado elemento de um dado vetor por um dado indice
+// função que remove um elemento de um dado vetor por um dado indice
 export function delete_by_index(vector, index){
     const new_vector = [];
     for (let _index in vector){
@@ -236,4 +236,10 @@ export function delete_by_index(vector, index){
         }
     }
     return new_vector;
+}
+
+// função que edita um valor de um vetor dado o vetor, indice do elemento a ser editado e novo valor
+export function edit_by_index(vector, index, new_value){
+    vector[index] = new_value;
+    return vector;
 }

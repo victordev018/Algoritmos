@@ -205,3 +205,24 @@ export function add_elements(quantity, vector){
     }
     return vector;
 } 
+
+// função que checa se em um dado vetor possui pelo menos uma aparição de um dado valor
+export function has_element_in_vector(vector, element){
+    for (let value of vector){
+        if (value == element){
+            return true;
+        }
+    }
+    return false;
+}
+
+// função que remove todas as aparições de um dado valor em um dado vetor
+export function remove_appearences(vector, value){
+    const new_vector = [];
+    for (let element of vector){
+        if (element != value){
+            new_vector.push(element);
+        }
+    }
+    return new_vector;
+}

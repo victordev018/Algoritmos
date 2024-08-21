@@ -7,7 +7,7 @@ import { create_vetor_automatically, create_vector_manually, reset_vector,
 get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
-collection_string_to_numbers, add_elements}
+collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -25,6 +25,7 @@ export function show_main_menu(){
     > 9  - mostar valores negativos e quantidade
     > 10 - atualizar todos os valores por uma das regras
     > 11 - adicionar novos valores
+    > 12 - remover itens por valor exato
     > 16 - Sair
     `;
     print(menu);
@@ -378,5 +379,35 @@ export function add_new_values(vector){
     // exibindo vetor pós inserção de novos valores
     show_elements_of_vector(vector, "\n> vetor pos insercao:");
 
+    return vector;
+}
+
+// opção 12 -> remover itens por valor exato
+export function remove_item_per_value(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo vetor atual
+    show_elements_of_vector(vector, "\n> vetor atual");
+
+    // solicitando valor para
+    const value_to_remove = get_number("\n> qual valor deseja remover do vetor: "); 
+
+    // verificando se no vetor possui pelo menos uma aparição do dado valor de remoção
+    if (!has_element_in_vector(vector, value_to_remove)){
+        print("\n> não possue este valor no vetor!");
+        return vector;
+    }
+
+    // removendo todas as aparições deste valor no vetor
+    vector = remove_appearences(vector, value_to_remove);
+
+    // exibindo vetor pós remoção
+    show_elements_of_vector(vector, "\n> vetor pos remocao:")
+    print("\n> valores removidos com sucesso!");
     return vector;
 }

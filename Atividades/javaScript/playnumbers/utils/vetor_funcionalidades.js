@@ -5,12 +5,10 @@ import { clear_screen, get_number, get_size_vector, get_text, print } from "./ut
 
 import { create_vetor_automatically, create_vector_manually, reset_vector, 
 get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
-get_positives, 
-get_negatives,
-multiply_elements,
-exponentiate_elements,
-my_split,
-fractionate_elements} from "./vetor_utils.js";
+get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
+fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
+collection_string_to_numbers}
+from "./vetor_utils.js";
 
 // menu principal de funções
 export function show_main_menu(){
@@ -37,7 +35,7 @@ export function show_menu_update(){
     > 1  - multiplicar por um valor
     > 2  - elevar a um valor
     > 3  - reduzir a uma fracao
-    > 4  - substituir negatipos por valor aleatorio em uma faixa
+    > 4  - substituir negativos por valor aleatorio em uma faixa
     `;
     print(menu);
 }
@@ -88,10 +86,10 @@ export function show_elements_of_vector(vector, message){
     let string_of_elements = "["
     for (let index in vector){
         if (index == get_size_vector(vector) -1){
-            string_of_elements += ` ${vector[index]}`;
+            string_of_elements += ` ${vector[index].toFixed(1)}`;
             break;
         }
-        string_of_elements += ` ${vector[index]},`;
+        string_of_elements += ` ${vector[index].toFixed(1)},`;
     }
     string_of_elements += " ]";
     print(string_of_elements);
@@ -231,16 +229,21 @@ export function update_values(vector){
     // direcionando para a opção escolhida
     switch (opcao) {
         case 1:
+            // atualizar multiplicando
             vector = update_values_with_multiply(vector);
             break;
         case 2:
+            // atualizar com exponenciação
             vector = update_values_with_exponentiation(vector);
             break;
         case 3:
+            // atualizar com redução fracionária
             vector = update_values_with_fractionate(vector);
             break;
         case 4:
-            // substituir negativos por aleatório
+            // atualizar com substituição dos negativos por aleatórios em uma faixa
+            vector = update_values_negatives_by_radom(vector);
+            break;
     }
 
     return vector;
@@ -302,8 +305,9 @@ function update_values_with_fractionate(vector){
     }
 
     // solicitando  fator de fracionamento
-    const fractionate_value_string = get_text("\n> informe o fator fracionário (ex: 1/2): ");
-    const fractionate_value_num = my_split(fractionate_value_string, "/");
+    const fractionate_value_string = get_text("\n> informe o fator fracionario (ex: 1/2): ");
+    let fractionate_value_num = my_split(fractionate_value_string, "/");
+    fractionate_value_num = collection_string_to_numbers(fractionate_value_num);
     const numerator = fractionate_value_num[0];
     const denominator = fractionate_value_num[1];
 
@@ -316,4 +320,38 @@ function update_values_with_fractionate(vector){
     // exibindo novo vetor
     show_elements_of_vector(vector, "\n> vetor pos modificacao:")
     return vector;
+}
+
+// opção 10.4 -> substituir negativos por valores aleatórios em uma faixa
+function update_values_negatives_by_radom(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // verificando se a coleção possui valores negativos para substitui-los
+    if (!has_negative_in_collection(vector)){
+        print("\n> Não possui valores negativos no vetor para poder substituir!")
+        return vector;
+    }
+
+    // solicitando faixa de valores
+    const range_of_values_str = get_text("\n> informe a faixa de valores, min e max (ex: 1-5): ");
+    let range_of_values_num = my_split(range_of_values_str, "-");
+    range_of_values_num = collection_string_to_numbers(range_of_values_num);
+    const min = range_of_values_num[0];
+    const max = range_of_values_num[1];
+
+    // exibindo vetor antes de modifica-lo
+    show_elements_of_vector(vector, "\n> vetor antes da modificacao:");
+
+    // modificando vetor
+    vector = replace_negatives_by_random(vector, min, max);
+
+    // exibindo vetor modificado
+    show_elements_of_vector(vector, "\n> vetor pos modificacao:");
+    return vector;
+
 }

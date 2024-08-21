@@ -165,7 +165,7 @@ export function exponentiate_elements(collection, value) {
     return collection;
 }
 
-// funçã que retorna um coleção de valores de uma dada coleção fracionado por um dado valor
+// funçã que retorna umacoleção de valores de uma dada coleção fracionado por um dado valor
 export function fractionate_elements(collection, value){
     for (let index in collection){
         collection[index] = collection[index] * value;
@@ -173,3 +173,26 @@ export function fractionate_elements(collection, value){
 
     return collection;
 }
+
+// função que retorna uma coleção de valores de uma dada coleção substituindo negativos por valores aleatórios em uma faixa
+export function replace_negatives_by_random(collection, min, max){
+
+    // susbtituindo negativos por valor aleatório
+    for (let index in collection){
+        if (collection[index] < 0){
+            collection[index] = get_random_number(min, max);
+        }
+    }
+
+    return collection;
+}
+
+// função que verifica se um dado vetor possui algum elemento negativo
+export function has_negative_in_collection(collection){
+    for (let element of collection){
+        if (element < 0){
+            return true;
+        }
+    }
+    return false;
+} 

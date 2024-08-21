@@ -118,3 +118,16 @@ export function sum_elements_of_collection(collection){
 
     return sum;
 }
+
+// função que recebe uma coleção e retorna uma nova coleção com os valores positivos
+export function get_positives(collection) {
+    const new_vector = [];
+
+    for (let number of collection) {
+        if (number >= 0) {
+            new_vector.push(number);
+        }
+    }
+    
+    return new_vector; 
+}

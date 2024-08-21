@@ -2,7 +2,7 @@
 
 // imports
 import { clear_screen, get_number, get_size_vector, print } from "./utils.js";
-import { create_vetor_automatically, create_vector_manually, reset_vector, get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection } from "./vetor_utils.js";
+import { create_vetor_automatically, create_vector_manually, reset_vector, get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, get_positives } from "./vetor_utils.js";
 
 // menu principal de funções
 export function show_main_menu(){
@@ -15,6 +15,7 @@ export function show_main_menu(){
     > 5  - ver menor e maior valor com suas posicoes
     > 6  - somatorio dos valores do vetor
     > 7  - media dos valores
+    > 8  - mostrar valores positivos e quantidade
     > 16 - Sair
     `;
     print(menu);
@@ -55,7 +56,6 @@ export function initialize_numeric_vector(){
 
 // opção 2 -> mostrar elementos do vetor
 export function show_elements_of_vector(vector, message){
-    clear_screen();
     // verificando se o vetor passado possui conteúdo
     if (get_size_vector(vector) < 1){
         print("\n> vetor vazio!");
@@ -156,4 +156,25 @@ export function show_average_vector(vector){
     const average = sum / quantity;
 
     print(`\n> Media: ${average.toFixed(2)}`);
+}
+
+// opção 8 -> mostar valores positivos e quantiade
+export function show_positive_numbers_of_collection(vector){
+    clear_screen();
+    // verificando se o vetor passado possui elemento
+    if (get_size_vector(vector) < 1){
+        print("\n> vetor vazio!");
+        return;
+    }
+
+    // exibindo todos os valores valores do vetor
+    show_elements_of_vector(vector, "\n> vetor completo:")
+
+    // vetor dos elementos positivos
+    const vector_positives = get_positives(vector);
+    const quantity_positives = get_size_vector(vector_positives);
+
+    // exibindo valores
+    show_elements_of_vector(vector_positives, "\n> vetor dos valores positivos:");
+    print(`\n> quantiade de valores positivos: ${quantity_positives}`);
 }

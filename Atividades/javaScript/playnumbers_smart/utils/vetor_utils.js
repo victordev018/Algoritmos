@@ -22,12 +22,12 @@ export function my_split(text, separator){
     return vector;
 }
 
-// função para converter uma coleção de strings para uma de inteiros
-export function collection_string_to_numbers(collection){
-    const new_vector  = [];
-    
-    for (let element of collection) {
-        new_vector.push(parseInt(element));
+// função alternativa map(), que recevbe uma coleçâo e uma função de transformação para cada um de seus elementos
+export function my_map(collection, tranformer){
+    const new_vector = [];
+
+    for (let element of collection){
+        new_vector.push(tranformer(element));
     }
 
     return new_vector;
@@ -38,7 +38,7 @@ export function create_vetor_automatically() {
     clear_screen();
     const entries = get_text("\n> informe o tamanho, val minimo e val maximo (ex: 5 2 8): ");
     const vector_string = my_split(entries, " ");
-    const vector_numbers = collection_string_to_numbers(vector_string);
+    const vector_numbers = my_map(vector_string, (element) => parseInt(element));
 
     const size = vector_numbers[0];
     const min = vector_numbers[1];
@@ -58,7 +58,7 @@ export function create_vector_manually(){
     clear_screen();
     const entries = get_text("\n> informe o tamanho, val minimo e val maximo (ex: 5 2 8): ");
     const vector_string = my_split(entries, " ");
-    const vector_numbers = collection_string_to_numbers(vector_string);
+    const vector_numbers = my_map(vector_string, (element) => parseInt(element));
 
     const size = vector_numbers[0];
     const min = vector_numbers[1];
@@ -83,21 +83,12 @@ export function create_vector_of_file(){
         const name_file = get_text("\n> informe o nome do arquivo: ");
         const file = load_file(name_file);
         let vector = get_vector_split_of_file(file, "\n");
-        return collection_string_to_numbers(vector);
+        return my_map(vector, (element) => parseInt(element));
     } 
     catch(error){
         print("\n> arquivo não encontrado!");
         return
     }
-}
-
-// função que recebe uma coleção e um valor padrão, devolve a coleção resetada com o todos seus valores sendo o valor padrão dado
-export function reset_vector(collection, default_value){
-    for (let index in collection) {
-        collection[index] = default_value;
-    }
-
-    return collection;
 }
 
 // função que recebe uma coleção de número e retorna o índice do maior valor

@@ -3,12 +3,12 @@
 // imports
 import { clear_screen, get_number, get_size_vector, get_text, print } from "./utils.js";
 
-import { create_vetor_automatically, create_vector_manually, reset_vector, 
+import { create_vetor_automatically, create_vector_manually, 
 get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
-fractionate_elements, replace_negatives_by_random, has_negative_in_collection,
-collection_string_to_numbers, add_elements, has_element_in_vector, remove_appearences,
-delete_by_index, edit_by_index, create_vector_of_file, vector_to_string, write_content_in_file}
+fractionate_elements, replace_negatives_by_random, has_negative_in_collection, add_elements, has_element_in_vector, remove_appearences,
+delete_by_index, edit_by_index, create_vector_of_file, vector_to_string, write_content_in_file,
+my_map}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -117,7 +117,7 @@ export function vector_reset(vector){
 
     print("\n---------------> resetar vetor <---------------");
     const default_value = get_number("\n> informe o valor padrao para o vetor: ")
-    vector = reset_vector(vector, default_value);
+    vector = my_map(vector,(element) => element = default_value);
     show_elements_of_vector(vector, "\n> vetor pós modificacao: ")
     return vector;
 }
@@ -318,7 +318,7 @@ function update_values_with_fractionate(vector){
     // solicitando  fator de fracionamento
     const fractionate_value_string = get_text("\n> informe o fator fracionario (ex: 1/2): ");
     let fractionate_value_num = my_split(fractionate_value_string, "/");
-    fractionate_value_num = collection_string_to_numbers(fractionate_value_num);
+    fractionate_value_num = my_map(fractionate_value_num, (element) => parseInt(element));
     const numerator = fractionate_value_num[0];
     const denominator = fractionate_value_num[1];
 
@@ -351,7 +351,7 @@ function update_values_negatives_by_radom(vector){
     // solicitando faixa de valores
     const range_of_values_str = get_text("\n> informe a faixa de valores, min e max (ex: 1-5): ");
     let range_of_values_num = my_split(range_of_values_str, "-");
-    range_of_values_num = collection_string_to_numbers(range_of_values_num);
+    range_of_values_num = my_map(range_of_values_num, (element) => parseInt(element));
     const min = range_of_values_num[0];
     const max = range_of_values_num[1];
 

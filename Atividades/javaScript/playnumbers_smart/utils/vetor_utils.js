@@ -111,16 +111,6 @@ export function create_vector_of_file(){
     }
 }
 
-// função que retorna uma coleção de valores de uma dada coleção exponenciando por um dado valor
-export function exponentiate_elements(collection, value) {
-
-    for (let index in collection) {
-        collection[index] = Math.pow(collection[index], value);
-    }
-
-    return collection;
-}
-
 // funçã que retorna umacoleção de valores de uma dada coleção fracionado por um dado valor
 export function fractionate_elements(collection, value){
     for (let index in collection){

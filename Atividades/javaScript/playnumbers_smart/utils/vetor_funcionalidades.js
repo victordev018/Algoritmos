@@ -3,8 +3,7 @@
 // imports
 import { clear_screen, get_number, get_size_vector, get_text, print } from "./utils.js";
 
-import { create_vetor_automatically, create_vector_manually,my_split,
-fractionate_elements, replace_negatives_by_random, has_negative_in_collection, add_elements, has_element_in_vector, remove_appearences,
+import { create_vetor_automatically, create_vector_manually,my_split, replace_negatives_by_random, has_negative_in_collection, add_elements, has_element_in_vector, remove_appearences,
 delete_by_index, edit_by_index, create_vector_of_file, vector_to_string, write_content_in_file,
 my_map,
 my_reduce,
@@ -326,7 +325,7 @@ function update_values_with_fractionate(vector){
     show_elements_of_vector(vector, "\n> vetor antes da modificacao: ");
 
     // modificando valor
-    vector = fractionate_elements(vector, numerator/denominator);
+    vector = my_map(vector, element => element * numerator/denominator);
 
     // exibindo novo vetor
     show_elements_of_vector(vector, "\n> vetor pos modificacao:")

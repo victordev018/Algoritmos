@@ -111,15 +111,6 @@ export function create_vector_of_file(){
     }
 }
 
-// funçã que retorna umacoleção de valores de uma dada coleção fracionado por um dado valor
-export function fractionate_elements(collection, value){
-    for (let index in collection){
-        collection[index] = collection[index] * value;
-    }
-
-    return collection;
-}
-
 // função que retorna uma coleção de valores de uma dada coleção substituindo negativos por valores aleatórios em uma faixa
 export function replace_negatives_by_random(collection, min, max){
 

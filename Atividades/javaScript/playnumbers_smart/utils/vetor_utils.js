@@ -100,17 +100,6 @@ export function create_vector_of_file(){
     }
 }
 
-// função para somar valores de uma dada coleção de números
-export function sum_elements_of_collection(collection){
-    let sum = 0;
-
-    for (let element of collection) {
-        sum += element;
-    }
-
-    return sum;
-}
-
 // função que recebe uma coleção e retorna uma nova coleção com os valores positivos
 export function get_positives(collection) {
     const new_vector = [];

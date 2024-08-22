@@ -111,16 +111,6 @@ export function create_vector_of_file(){
     }
 }
 
-// função que retorna uma coleção de valores de uma dada coleção multiplicados por um dado valor
-export function multiply_elements(collection, value) {
-
-    for (let index in collection) {
-        collection[index] = collection[index]  * value;
-    }
-
-    return collection;
-}
-
 // função que retorna uma coleção de valores de uma dada coleção exponenciando por um dado valor
 export function exponentiate_elements(collection, value) {
 

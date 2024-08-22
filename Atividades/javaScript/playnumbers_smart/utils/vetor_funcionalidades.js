@@ -3,7 +3,7 @@
 // imports
 import { clear_screen, get_number, get_size_vector, get_text, print } from "./utils.js";
 
-import { create_vetor_automatically, create_vector_manually, get_negatives, multiply_elements, exponentiate_elements,my_split,
+import { create_vetor_automatically, create_vector_manually, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection, add_elements, has_element_in_vector, remove_appearences,
 delete_by_index, edit_by_index, create_vector_of_file, vector_to_string, write_content_in_file,
 my_map,
@@ -222,7 +222,7 @@ export function show_negative_numbers_of_collection(vector){
     show_elements_of_vector(vector, "\n> vetor completo:")
 
     // vetor dos elementos positivos
-    const vector_negatives = get_negatives(vector);
+    const vector_negatives = my_filter(vector, element => element < 0);
     const quntity_negative = get_size_vector(vector_negatives);
 
     // exibindo valores

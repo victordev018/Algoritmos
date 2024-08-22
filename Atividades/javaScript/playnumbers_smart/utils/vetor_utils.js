@@ -111,19 +111,6 @@ export function create_vector_of_file(){
     }
 }
 
-// função que recebe uma coleção e retorna uma nova coleção com os valores negativos
-export function get_negatives(collection) {
-    const new_vector = [];
-
-    for (let number of collection) {
-        if (number < 0) {
-            new_vector.push(number);
-        }
-    }
-
-    return new_vector;
-}
-
 // função que retorna uma coleção de valores de uma dada coleção multiplicados por um dado valor
 export function multiply_elements(collection, value) {
 

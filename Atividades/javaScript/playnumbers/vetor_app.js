@@ -100,6 +100,7 @@ function main() {
                 enter_to_go_back("\n> arquivo salvo!\n> pressione enter para voltar:");
                 break;
             case 16:
+            // sair e salvar vetor non arquivo vetor.txt
                 write_vector_in_file(vector);
                 clear_screen();
                 print("saindo...");

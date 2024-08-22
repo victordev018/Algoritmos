@@ -42,6 +42,17 @@ export function my_reduce(collection, func, initial_value){
     return acc;
 }
 
+// função alternativa my_filter, que recebe uma lista e um predicado, que seria a regra de fultração, e retorna uma lista filtrada
+export function my_filter(collection, predicate){
+    const new_vector = [];
+    for (let element of collection){
+        if (predicate(element)){
+            new_vector.push(element);
+        }
+    }
+    return new_vector;
+}
+
 // função para criar um vetor numérico automaticamente com base em um tamanho, valor minimo e valor máximo
 export function create_vetor_automatically() {
     clear_screen();
@@ -98,19 +109,6 @@ export function create_vector_of_file(){
         print("\n> arquivo não encontrado!");
         return
     }
-}
-
-// função que recebe uma coleção e retorna uma nova coleção com os valores positivos
-export function get_positives(collection) {
-    const new_vector = [];
-
-    for (let number of collection) {
-        if (number >= 0) {
-            new_vector.push(number);
-        }
-    }
-    
-    return new_vector; 
 }
 
 // função que recebe uma coleção e retorna uma nova coleção com os valores negativos

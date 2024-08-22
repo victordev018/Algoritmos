@@ -3,12 +3,12 @@
 // imports
 import { clear_screen, get_number, get_size_vector, get_text, print } from "./utils.js";
 
-import { create_vetor_automatically, create_vector_manually, 
-get_index_of_highest_value, get_index_of_lowest_value, sum_elements_of_collection, 
+import { create_vetor_automatically, create_vector_manually, sum_elements_of_collection, 
 get_positives, get_negatives, multiply_elements, exponentiate_elements,my_split,
 fractionate_elements, replace_negatives_by_random, has_negative_in_collection, add_elements, has_element_in_vector, remove_appearences,
 delete_by_index, edit_by_index, create_vector_of_file, vector_to_string, write_content_in_file,
-my_map}
+my_map,
+my_reduce}
 from "./vetor_utils.js";
 
 // menu principal de funções
@@ -147,10 +147,10 @@ export function show_highest_and_lowest(vector){
 
     // exibindo vetor
     show_elements_of_vector(vector, "\n> vetor atual:");
-    const index_of_highest = get_index_of_highest_value(vector);
-    const index_of_lowest = get_index_of_lowest_value(vector);
-    const highest_value = vector[index_of_highest];
-    const lowest_value = vector[index_of_lowest];
+    const highest_value = my_reduce(vector, (element, acc) => element > acc ? element : acc, vector[0]);
+    const lowest_value = my_reduce(vector, (element, acc) => element < acc ? element : acc, vector[0]);
+    const index_of_highest = vector.indexOf(highest_value);
+    const index_of_lowest = vector.indexOf(lowest_value);
     print(`\n> maior valor: ${highest_value} -> posicao: ${index_of_highest}`);
     print(`\n> menor valor: ${lowest_value} -> posicao: ${index_of_lowest}`);
 }

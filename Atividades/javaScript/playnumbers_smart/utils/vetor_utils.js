@@ -22,7 +22,7 @@ export function my_split(text, separator){
     return vector;
 }
 
-// função alternativa map(), que recevbe uma coleçâo e uma função de transformação para cada um de seus elementos
+// função alternativa my_map(), que recevbe uma coleçâo e uma função de transformação para cada um de seus elementos
 export function my_map(collection, tranformer){
     const new_vector = [];
 
@@ -31,6 +31,15 @@ export function my_map(collection, tranformer){
     }
 
     return new_vector;
+}
+
+// função alternativa my_redue(), que recebe uma coleção, uma função e um valor inicail de acumulador
+export function my_reduce(collection, func, initial_value){
+    let acc = initial_value;
+    for (let element of collection){
+        acc = func(element, acc);
+    }
+    return acc;
 }
 
 // função para criar um vetor numérico automaticamente com base em um tamanho, valor minimo e valor máximo
@@ -89,32 +98,6 @@ export function create_vector_of_file(){
         print("\n> arquivo não encontrado!");
         return
     }
-}
-
-// função que recebe uma coleção de número e retorna o índice do maior valor
-export function get_index_of_highest_value(collection) {
-    let index_of_the_big = 0;
-
-    for (let index in collection) {
-        if ( collection[index] > collection[index_of_the_big]) {
-            index_of_the_big = index;
-        }
-    }
-
-    return index_of_the_big;
-}
-
-// função que recebe uma coleção de número e retorna o índice do menor valor
-export function get_index_of_lowest_value(collection) {
-    let index_of_the_lowest = 0;
-
-    for (let index in collection) {
-        if ( collection[index] < collection[index_of_the_lowest]) {
-            index_of_the_lowest = index;
-        }
-    }
-
-    return index_of_the_lowest;
 }
 
 // função para somar valores de uma dada coleção de números

@@ -181,7 +181,7 @@ export function show_average_vector(vector){
 
     // exibindo valores do vetor
     show_elements_of_vector(vector, "\n> vetor atual:");
-    const sum = sum_elements_of_collection(vector);
+    const sum = my_reduce(vector, (element, acc) => element + acc, 0);
     const quantity = get_size_vector(vector);
     const average = sum / quantity;
 

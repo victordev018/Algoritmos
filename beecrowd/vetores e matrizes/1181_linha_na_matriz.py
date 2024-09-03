@@ -29,8 +29,8 @@ def doOperation(matrix, line, operation):
 
 def fillMatrix(matrix):
     for line in range(len(matrix)):
-        for element in range(len(matrix[line])):
-            matrix[line][element] = float(input())
+        for column in range(len(matrix[line])):
+            matrix[line][column] = float(input())
         
 
 def generateMatrixWithSize(lines, columns):

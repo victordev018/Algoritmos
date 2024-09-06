@@ -15,6 +15,7 @@ public class FatorialWhile {
                          +"\n> 4 - Calcular o Produto nas forma de somas sucessivas"
                          +"\n> 5 - Calcular Exponencial de N elevado a expoente E"
                          +"\n> 6 - Dado um intervalo A e B, calcular o somatório de \n      num Vetor de N Elementos Aleatórios."
+                         +"\n> 7 - Contar Vogais e Consoantes de Frase"
                          +"\n> 8 - Sair"
                          +"\n> _______________________________________________"
                          +"\n> opcção: ";
@@ -50,6 +51,10 @@ public class FatorialWhile {
                 case 6:
                     // somatório de elementos de um vetor de N eelemntos aleatórios dentro de um limite A e B
                     sumVectorRandom(in);
+                    break;
+                case 7:
+                    // contar vogais e consoantes de frase
+                    countVowelsAndConsonantes(in);
                     break;
                 case 8:
                     return;
@@ -133,6 +138,14 @@ public class FatorialWhile {
         int b = Integer.parseInt(valuesString[1]);
         showSequenceAToB(a, b);
         pressEnterToGoBack("\n> pressione enter para voltar", in);
+    }
+
+    // função que imprime os valores entre um dado intervalo de A a B
+    private static void showSequenceAToB(int a, int b){
+        while(a <= b){
+            System.out.println(a);
+            a++;
+        }
     }
 
     // opção 4 > fazer produto (multiplicação) na forma de somas sucessivas
@@ -224,14 +237,6 @@ public class FatorialWhile {
         return result;
     }
 
-    // função que imprime os valores entre um dado intervalo de A a B
-    private static void showSequenceAToB(int a, int b){
-        while(a <= b){
-            System.out.println(a);
-            a++;
-        }
-    }
-
     // função que soma os elementos de um dado vetor numérico
     private static int sumElementsFromVector(Integer[] vecIntegers){
         int sum = 0;
@@ -253,6 +258,73 @@ public class FatorialWhile {
             System.out.println(vector[loops]);
             loops++;
         }
+    }
+
+    // opção 7 -> contar vogais e consoantes de uma frase
+    private static void countVowelsAndConsonantes(Scanner in){
+        // solicitando frase a ser contada vogais e consoantes
+        System.out.print("\n> insira a frase: ");
+        in.nextLine();
+        String phrase = in.nextLine();
+        // contando vogais e consoantes
+        int numVowels = countVowels(phrase);
+        int numConsonants = countConsonants(phrase);
+        // exibindo valores
+        System.out.printf("%n> vogais: %d%n> consonates: %d", numVowels, numConsonants);
+        pressEnterToGoBack("\n> pressione enter para voltar", in);
+    }
+
+    // função para contar consoantes em uma dada frase
+    private static int countConsonants(String phrase){
+        int quantity = 0;
+        int loops = 0;
+        while (loops < phrase.length()){
+            // letra atual
+            char currentChar = phrase.charAt(loops);
+            if (isLetter(currentChar) && !isVowels(phrase.charAt(loops))){
+                quantity++;
+            }
+            loops++;
+        }
+        return quantity;
+    }
+
+    // função que conta vogais em uma dada frase
+    private static int countVowels(String phrase){
+        int quantity = 0;
+        int loops = 0;
+        while (loops < phrase.length()){
+            // letra atual
+            char currentChar = phrase.charAt(loops);
+            if (isLetter(currentChar) && isVowels(currentChar)){
+                quantity++;
+            }
+            loops++;
+        }
+        return quantity;
+    }
+
+    // função que verifica se um dado caractere é uma vogal
+    private static boolean isVowels(char character){
+        // lista de vogais
+        String[] vowels = new String[]{"a", "e", "i", "o", "u"};
+        return vectorConatainElement(vowels, character);
+    }
+
+    // função que verifica se uma dado caracter é uma letra
+    private static boolean isLetter(Character character){
+        int code = (int) character;
+        return code > 64 && code < 91 || code > 96 && code < 123;
+    }
+
+    // função que verifica se um dado vetor possui um dado elemento
+    private static boolean vectorConatainElement(String[] vector, Character obj){
+        int loops = 0;
+        while (loops < vector.length){
+            if (vector[loops].toLowerCase().equals(String.valueOf(obj).toLowerCase())) return true;
+            loops++;
+        }
+        return false;
     }
 
     // método para limpar tela do terminal

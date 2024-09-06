@@ -5,68 +5,55 @@ import java.util.Scanner;
 public class VersionWhile {
     public static void main(String[] args) {
         
-        Scanner in = new Scanner(System.in);
-
-        // menu
-        String mainMenu = "\n> -------------- Menu principal ---------------- <"
-                         +"\n> 1 - calcular fatorial de um numero n"
-                         +"\n> 2 - Sequência Fibonacci de comprimento C"
-                         +"\n> 3 - Sequência Simples de A até B"
-                         +"\n> 4 - Calcular o Produto nas forma de somas sucessivas"
-                         +"\n> 5 - Calcular Exponencial de N elevado a expoente E"
-                         +"\n> 6 - Dado um intervalo A e B, calcular o somatório de \n      num Vetor de N Elementos Aleatórios."
-                         +"\n> 7 - Contar Vogais e Consoantes de Frase"
-                         +"\n> 8 - Sair"
-                         +"\n> _______________________________________________"
-                         +"\n> opcção: ";
-
-
-        // lendo opção desejada
-        System.out.print(mainMenu);
-        int option = in.nextInt();
-
-        while(option != 8){
-            // direcioando para a opção desejada
-            switch (option){
-                case 1:
-                    // fatorial
-                    calculateFactorial(in);
-                    break;
-                case 2:
-                    // fibonacci
-                    sequenceFibonacci(in);
-                    break;
-                case 3:
-                    // imorimir sequencia de A a B
-                    printSequence(in); 
-                    break;
-                case 4:
-                    // produto usando repetição e soma
-                    productWithSum(in);
-                    break;
-                case 5:
-                    // calculando exponencial de um valor N por um expoente E
-                    calculateExponentiation(in);
-                    break;
-                case 6:
-                    // somatório de elementos de um vetor de N eelemntos aleatórios dentro de um limite A e B
-                    sumVectorRandom(in);
-                    break;
-                case 7:
-                    // contar vogais e consoantes de frase
-                    countVowelsAndConsonantes(in);
-                    break;
-                case 8:
-                    return;
-            }
-
-            cleanScreen();
+        try (Scanner in = new Scanner(System.in)) {
+            // menu
+            String mainMenu = """
+                                      > -------------- Menu principal ---------------- <
+                                      > 1 - calcular fatorial de um numero n
+                                      > 2 - Sequ\u00eancia Fibonacci de comprimento C
+                                      > 3 - Sequ\u00eancia Simples de A at\u00e9 B
+                                      > 4 - Calcular o Produto nas forma de somas sucessivas
+                                      > 5 - Calcular Exponencial de N elevado a expoente E
+                                      > 6 - Dado um intervalo A e B, calcular o somat\u00f3rio de
+                                            num Vetor de N Elementos Aleat\u00f3rios.
+                                      > 7 - Contar Vogais e Consoantes de Frase
+                                      > 8 - Sair
+                                      > _______________________________________________
+                                      > opc\u00e7\u00e3o: """;
+            
+            
             // lendo opção desejada
             System.out.print(mainMenu);
-            option = in.nextInt();
+            int option = in.nextInt();
+            
+            while(option != 8){
+                // direcioando para a opção desejada
+                switch (option){
+                    case 1 -> // fatorial
+                        calculateFactorial(in);
+                    case 2 -> // fibonacci
+                        sequenceFibonacci(in);
+                    case 3 -> // imorimir sequencia de A a B
+                        printSequence(in);
+                    case 4 -> // produto usando repetição e soma
+                        productWithSum(in);
+                    case 5 -> // calculando exponencial de um valor N por um expoente E
+                        calculateExponentiation(in);
+                    case 6 -> // somatório de elementos de um vetor de N eelemntos aleatórios dentro de um limite A e B
+                        sumVectorRandom(in);
+                    case 7 -> // contar vogais e consoantes de frase
+                        countVowelsAndConsonantes(in);
+                    case 8 -> {
+                        return;
+                    }
+                }
+                
+                cleanScreen();
+                // lendo opção desejada
+                System.out.print(mainMenu);
+                option = in.nextInt();
+            }
         }
-
-        in.close();
     }
 
     // opção 1 -> cálculo de fatorial

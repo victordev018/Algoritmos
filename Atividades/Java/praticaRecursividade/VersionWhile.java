@@ -214,15 +214,19 @@ public class VersionWhile {
     // método que gera um vetor numérico com um dado tamanho e um intervalo para os valors
     private static Integer[] generateVectorWithSiezeAndInterval(int size, int min, int max){
         Integer[] vector = new Integer[size];
-        for (int i = 0; i < size; i++){
-            vector[i] = generateValueRadonInInveral(min, max);
+        // for (int i = 0; i < size; i++){
+        //     vector[i] = generateValueRadonInInveral(min, max);
+        // }
+        int loop = 0;
+        while (loop < size){
+            vector[loop] = generateValueRadonInInveral(min, max);
+            loop++;
         }
         return vector;
     }
 
     // função que gera valores aleatórios dentro de um intervalo 
     private static int generateValueRadonInInveral(int min, int max){
-        System.out.println("min: " + min +", max: " + max);
         return (int) (Math.random() * (max - min + 1)) + min;
     }
 

@@ -9,18 +9,18 @@ public class VersionFor {
         try (Scanner in = new Scanner(System.in)) {
             // menu
             String mainMenu = """
-                                                   > -------------- Menu principal ---------------- <
-                                      > 1 - calcular fatorial de um numero n
-                                      > 2 - Sequ\u00eancia Fibonacci de comprimento C
-                                      > 3 - Sequ\u00eancia Simples de A at\u00e9 B
-                                      > 4 - Calcular o Produto nas forma de somas sucessivas
-                                      > 5 - Calcular Exponencial de N elevado a expoente E
-                                      > 6 - Dado um intervalo A e B, calcular o somat\u00f3rio de
-                                            num Vetor de N Elementos Aleat\u00f3rios.
-                                      > 7 - Contar Vogais e Consoantes de Frase
-                                      > 8 - Sair
-                                      > _______________________________________________
-                                      > opc\u00e7\u00e3o: """;
+            > -------------- Menu principal ---------------- <
+            > 1 - calcular fatorial de um numero n
+            > 2 - Sequ\u00eancia Fibonacci de comprimento C
+            > 3 - Sequ\u00eancia Simples de A at\u00e9 B
+            > 4 - Calcular o Produto nas forma de somas sucessivas
+            > 5 - Calcular Exponencial de N elevado a expoente E
+            > 6 - Dado um intervalo A e B, calcular o somat\u00f3rio de
+                  num Vetor de N Elementos Aleat\u00f3rios.
+            > 7 - Contar Vogais e Consoantes de Frase
+            > 8 - Sair
+            > _______________________________________________
+            > opc\u00e7\u00e3o: """;
             
             
             // lendo opção desejada

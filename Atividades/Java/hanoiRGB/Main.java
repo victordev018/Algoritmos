@@ -30,11 +30,57 @@ public class Main {
             switch (option) {
                 case 1 -> basicLevel(in);
                 case 2 -> intermediateLevel(in);
+                case 3 -> advancedLevel(in);
             }
 
         } while (option != 4);
 
         in.close();
+    }
+
+    // jogo no nível avançado
+    private static void advancedLevel(Scanner in){
+        // cores para ganho de partida
+        final String ANSI_RESET = "\u001B[0m";
+        final String COLLOR_GREEN = "\u001B[32m";
+
+        clearScreen();
+
+        // gerando as torres
+        Character[] towerR = new Character[9];
+        Character[] towerG = new Character[9];
+        Character[] towerB = new Character[9];
+
+        // preenchendo o vetor da torre R
+        fillVector(towerR, 8);
+        fillVector(towerG, 8);
+        fillVector(towerB, 8);
+
+        Character[] copyOfTowerR = towerR.clone();
+        Character[] copyOfTowerG= towerG.clone();
+        Character[] copyOfTowerB = towerB.clone();
+
+        int firstPlayerAttemps = startMatch(in, towerR, towerG, towerB, 1);
+        int secondPlayerAttemps = startMatch(in, copyOfTowerR, copyOfTowerG, copyOfTowerB, 2);
+
+        // definindo ganhador
+        String winner = "empate, vocês são bom demais";
+
+        if (firstPlayerAttemps > secondPlayerAttemps){
+            winner = "jodador 2";
+        }
+        else if(firstPlayerAttemps < secondPlayerAttemps){
+            winner = "jogador 1";
+        }
+
+        String result = "--------------| RESULTADOS |--------------\n"+
+                        "> jogador 1: "+firstPlayerAttemps+" jogadas\n"+
+                        "> jogador 2: "+secondPlayerAttemps+" jogadas\n"+
+                        "------------------------------------------\n"+
+                        "> vencedor: "+COLLOR_GREEN + winner+ANSI_RESET+"\n";
+        
+        System.out.println("\n"+result);
+        in.nextLine();
     }
 
     // jogo no nível intermediário
@@ -75,7 +121,7 @@ public class Main {
         String result = "--------------| RESULTADOS |--------------\n"+
                         "> jogador 1: "+firstPlayerAttemps+" jogadas\n"+
                         "> jogador 2: "+secondPlayerAttemps+" jogadas\n"+
-                        "----------------------------------\n"+
+                        "------------------------------------------\n"+
                         "> vencedor: "+COLLOR_GREEN + winner+ANSI_RESET+"\n";
         
         System.out.println("\n"+result);
@@ -138,9 +184,9 @@ public class Main {
         int numberOfPlays = 0;
 
         do {
-            // exibindo torres
+            // exibição das torres
             showTowers(r, g, b);
-
+           
             // recebendo entrada de movimentação a fazer
             System.out.print("\n> jogada n°: " + (numberOfPlays+1)+" ");
             var playOfTheMoment = in.nextLine();

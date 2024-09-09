@@ -29,6 +29,7 @@ public class Main {
             // direcionando para a opção dejejada
             switch (option) {
                 case 1 -> basicLevel(in);
+                case 2 -> intermediateLevel(in);
             }
 
         } while (option != 4);
@@ -36,7 +37,52 @@ public class Main {
         in.close();
     }
 
-    // menu do nível básico
+    // jogo no nível intermediário
+    private static void intermediateLevel(Scanner in){
+        // cores para ganho de partida
+        final String ANSI_RESET = "\u001B[0m";
+        final String COLLOR_GREEN = "\u001B[32m";
+
+        clearScreen();
+
+        // gerando as torres
+        Character[] towerR = new Character[9];
+        Character[] towerG = new Character[9];
+        Character[] towerB = new Character[9];
+
+        // preenchendo o vetor da torre R
+        fillVector(towerR, 4);
+        fillVector(towerG, 5);
+        fillVector(towerB, 3);
+
+        Character[] copyOfTowerR = towerR.clone();
+        Character[] copyOfTowerG= towerG.clone();
+        Character[] copyOfTowerB = towerB.clone();
+
+        int firstPlayerAttemps = startMatch(in, towerR, towerG, towerB, 1);
+        int secondPlayerAttemps = startMatch(in, copyOfTowerR, copyOfTowerG, copyOfTowerB, 2);
+
+        // definindo ganhador
+        String winner = "empate, vocês são bom demais";
+
+        if (firstPlayerAttemps > secondPlayerAttemps){
+            winner = "jodador 2";
+        }
+        else if(firstPlayerAttemps < secondPlayerAttemps){
+            winner = "jogador 1";
+        }
+
+        String result = "--------------| RESULTADOS |--------------\n"+
+                        "> jogador 1: "+firstPlayerAttemps+" jogadas\n"+
+                        "> jogador 2: "+secondPlayerAttemps+" jogadas\n"+
+                        "----------------------------------\n"+
+                        "> vencedor: "+COLLOR_GREEN + winner+ANSI_RESET+"\n";
+        
+        System.out.println("\n"+result);
+        in.nextLine();
+    }
+
+    // jogo no nível básico
     private static void basicLevel(Scanner in) {
 
         // cores para ganho de partida
@@ -51,7 +97,7 @@ public class Main {
         Character[] towerB = new Character[9];
 
         // preenchendo o vetor da torre R
-        fillVector(towerR, 4);
+        fillVector(towerR, 9);
         Character[] copyOfTowerR = towerR.clone();
 
         int firstPlayerAttemps = startMatch(in, towerR, towerG, towerB, 1);
@@ -61,7 +107,7 @@ public class Main {
         String winner = "empate, vocês são bom demais";
 
         if (firstPlayerAttemps > secondPlayerAttemps){
-            winner = "jodaor 2";
+            winner = "jodador 2";
         }
         else if(firstPlayerAttemps < secondPlayerAttemps){
             winner = "jogador 1";

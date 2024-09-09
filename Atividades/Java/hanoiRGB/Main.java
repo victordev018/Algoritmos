@@ -38,6 +38,11 @@ public class Main {
 
     // menu do nível básico
     private static void basicLevel(Scanner in) {
+
+        // cores para ganho de partida
+        final String ANSI_RESET = "\u001B[0m";
+        final String COLLOR_GREEN = "\u001B[32m";
+
         clearScreen();
 
         // gerando as torres
@@ -66,7 +71,7 @@ public class Main {
                         "> jogador 1: "+firstPlayerAttemps+" jogadas\n"+
                         "> jogador 2: "+secondPlayerAttemps+" jogadas\n"+
                         "----------------------------------\n"+
-                        "> vencedor: " + winner+"\n";
+                        "> vencedor: "+COLLOR_GREEN + winner+ANSI_RESET+"\n";
         
         System.out.println("\n"+result);
         in.nextLine();
@@ -75,6 +80,11 @@ public class Main {
 
     // método responsáel por começar e gerenciar a partida
     private static int startMatch(Scanner in, Character[] r, Character[] g, Character[] b, int currentPlayer) {
+
+        // cores para ganho de partida
+        final String ANSI_RESET = "\u001B[0m";
+        final String COLLOR_GREEN = "\u001B[32m";
+
         clearScreen();
         System.out.println("-------> PARTIDA INICIADA <--------");
         System.out.println("         Jogador numero " + currentPlayer + "\n\n");
@@ -98,7 +108,7 @@ public class Main {
             }
 
         } while (!(towerOnlyHas(r, 'R') && towerOnlyHas(g, 'G') && towerOnlyHas(b, 'B')));
-        System.out.println("\n AEEH Partida finalizada!");
+        System.out.println(COLLOR_GREEN+"\n AEEH Partida finalizada!"+ANSI_RESET);
         in.nextLine();
         return numberOfPlays;
     }
@@ -116,9 +126,13 @@ public class Main {
     // método responsável por realizar um movimento de disco nas torres
     private static boolean makeMove(String play, Character[] r, Character[] g, Character[] b){
         
+        // cores para os erros
+        final String COLLOR_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
+
         // verificando se a quantidade de valores recebidos estão corretos
         if (play.length() != 2){
-            System.out.println("ERRO o número mínimo de entradas é 2 (ex: 'rg'), para mover da torre r para g");
+            System.out.println(COLLOR_RED+"ERRO o número mínimo de entradas é 2 (ex: 'rg'), para mover da torre r para g"+ANSI_RESET);
             return false;
         }
 
@@ -131,21 +145,27 @@ public class Main {
         originTower = setTower(fields[0], r, g, b);
         destinyTower = setTower(fields[1], r, g, b);
 
+        // verificando se os dois valores, origem e destino, são valores válidos (R,G,B)
+        if (!validateOriginAndDestity(fields[0], fields[1])){
+            System.out.println(COLLOR_RED+"ERRO valores '"+fields[0]+fields[1]+"' não são permitidos, somente (r,g,b)"+ANSI_RESET);
+            return false;
+        }
+
         // verificando se a origem e o destino são iguais
         if (fields[0].equals(fields[1])){
-            System.out.println("ERRO a torre "+fields[0]+" não pode levar elemento para ela mesma!");
+            System.out.println(COLLOR_RED+"ERRO a torre "+fields[0]+" não pode levar elemento para ela mesma!"+ANSI_RESET);
             return false;
         }
 
         // verificando se a torre de origem não possui elementos
         if (!hasElements(originTower)){
-            System.out.println("ERRO a torre "+fields[0]+" não possui elementos!");
+            System.out.println(COLLOR_RED+"ERRO a torre "+fields[0]+" não possui elementos!"+ANSI_RESET);
             return false;
         }
 
         // verificando se a torre destino não possui espaço
         if (!hasSpace(destinyTower)){
-            System.out.println("ERRO a torre "+fields[1]+" não possui espaço!");
+            System.out.println(COLLOR_RED+"ERRO a torre "+fields[1]+" não possui espaço!"+ANSI_RESET);
             return false;
         }
 
@@ -156,6 +176,12 @@ public class Main {
         destinyTower[indexOfFirstElementEmpityOfTheDestination] = originTower[indexOfLastElementOfTheOrigin];
         originTower[indexOfLastElementOfTheOrigin] = null;
         return true;
+    }
+
+    // método que valida se os valores de origem e destino são válidos
+    private static boolean validateOriginAndDestity(String origin, String destity){
+        return (origin.toUpperCase().equals("R") || origin.toUpperCase().equals("G") || origin.toUpperCase().equals("B"))
+                && (destity.toUpperCase().equals("R") || destity.toUpperCase().equals("G") || destity.toUpperCase().equals("B"));
     }
 
     // método que retorna o index do primeiro elemento vazio em um dado vetor

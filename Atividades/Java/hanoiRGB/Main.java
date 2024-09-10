@@ -8,7 +8,7 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
 
-        // menu princil
+        // menu principal
         String menu = """
                 --------> Hanói RGB <--------
                 > 1 - nivel básico
@@ -162,7 +162,7 @@ public class Main {
         String result = "--------------| RESULTADOS |--------------\n"+
                         "> jogador 1: "+firstPlayerAttemps+" jogadas\n"+
                         "> jogador 2: "+secondPlayerAttemps+" jogadas\n"+
-                        "----------------------------------\n"+
+                        "------------------------------------------\n"+
                         "> vencedor: "+COLLOR_GREEN + winner+ANSI_RESET+"\n";
         
         System.out.println("\n"+result);
@@ -194,9 +194,8 @@ public class Main {
             clearScreen();
             // verificando se o movimento for válido
             if (makeMove(playOfTheMoment, r, g, b)){
-                // se for movido com perfeição
+                // se for movido com perfeição, aumenta a quantidade de jogadas
                 numberOfPlays++;
-                showTowers(r, g, b);
             }
 
         } while (!(towerOnlyHas(r, 'R') && towerOnlyHas(g, 'G') && towerOnlyHas(b, 'B')));
@@ -239,7 +238,7 @@ public class Main {
 
         // verificando se os dois valores, origem e destino, são valores válidos (R,G,B)
         if (!validateOriginAndDestity(fields[0], fields[1])){
-            System.out.println(COLLOR_RED+"ERRO valores '"+fields[0]+fields[1]+"' não são permitidos, somente (r,g,b)"+ANSI_RESET);
+            System.out.println(COLLOR_RED+"ERRO valores '"+fields[0]+fields[1]+"' não são permitidos, somente combinações com (r,g,b)"+ANSI_RESET);
             return false;
         }
 

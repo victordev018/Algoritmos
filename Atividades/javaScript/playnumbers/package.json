@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "playnumbers": "file:",
     "readline-sync": "^1.4.10"
   }
 }

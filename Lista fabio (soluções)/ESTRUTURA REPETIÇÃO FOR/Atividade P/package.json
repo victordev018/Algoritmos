@@ -1,11 +1,11 @@
 {
   "dependencies": {
+    "atividade-p": "file:",
     "readline-sync": "^1.4.10"
   },
   "name": "atividade-p",
   "version": "1.0.0",
   "main": "questao03.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

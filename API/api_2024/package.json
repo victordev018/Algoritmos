@@ -1,11 +1,11 @@
 {
   "dependencies": {
+    "api_2024(jv)": "file:",
     "readline-sync": "^1.4.10"
   },
   "name": "api_2024(jv)",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

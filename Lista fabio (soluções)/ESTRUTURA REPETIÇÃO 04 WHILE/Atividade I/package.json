@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "atividade-i": "file:",
     "readline-sync": "^1.4.10"
   },
-  "devDependencies": {},
   "description": ""
 }

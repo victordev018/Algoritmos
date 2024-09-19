@@ -101,7 +101,7 @@ public class Main {
         fillVector(towerG, 5);
         fillVector(towerB, 3);
 
-        Character[] copyOfTowerR = towerR.clone();
+        Character[] copyOfTowerR = towerR.clone();                  
         Character[] copyOfTowerG= towerG.clone();
         Character[] copyOfTowerB = towerB.clone();
 

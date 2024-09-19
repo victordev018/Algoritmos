@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "atividade-b": "file:",
     "readline-sync": "^1.4.10"
   }
 }

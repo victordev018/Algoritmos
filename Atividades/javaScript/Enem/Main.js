@@ -1,9 +1,9 @@
 // imports
 
-import {clearScreen, getNumberInRange, print} from "./utils/ioUtils.js"
+import {clearScreen, getNumberInRange, pressEnterToContinue, print} from "./utils/ioUtils.js"
 import { loadFile } from "./utils/fileUtils.js";
 import { dataToObjectArray } from "./utils/vectorUtils.js";
-import { topNByArea, topNNational, topNByState} from "./features.js";
+import { topNByArea, topNNational, topNByState, topNByStateAndNetwork} from "./features.js";
 
 function main(){
 
@@ -63,6 +63,10 @@ function execute(option, list){
         case 3:
             // Top N por Estado
             topNByState(list);
+            break;
+        case 4:
+            // top N por estado e rede
+            topNByStateAndNetwork(list);
             break;
         case 11:
             // sair

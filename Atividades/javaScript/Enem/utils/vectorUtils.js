@@ -53,8 +53,8 @@ export function copyXElements(list, xValues){
 
     // verifiando se a lista possui a quantidade xValues disponíveis
     if (list.length < xValues){
-        pressEnterToContinue("\n> Erro! o tamanho da lista é inferior a " + xValues);
-        return;
+        pressEnterToContinue("\n> Erro! o tamanho da lista e inferior a " + xValues);
+        return null;
     }
     
     for (let i = 0; i < xValues; i++){

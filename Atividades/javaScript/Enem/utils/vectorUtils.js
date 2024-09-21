@@ -1,6 +1,6 @@
 // imports
 
-import { clearScreen } from "./ioUtils.js";
+import { clearScreen, pressEnterToContinue } from "./ioUtils.js";
 import { print } from "./ioUtils.js";
 
 // funções úteis para vetor
@@ -45,4 +45,20 @@ export function showDatas(list){
         print("| redacao               : " + obj["redacao"]);
         print("----------------------------------------------------------------------");
     }
+}
+
+// função que faz a cópia de uma quantidade específica de elementos de uma lista para outra
+export function copyXElements(list, xValues){
+    const newList = [];
+
+    // verifiando se a lista possui a quantidade xValues disponíveis
+    if (list.length < xValues){
+        pressEnterToContinue("\n> Erro! o tamanho da lista é inferior a " + xValues);
+        return;
+    }
+    
+    for (let i = 0; i < xValues; i++){
+        newList.push(list[i]);
+    }
+    return newList;
 }

@@ -24,3 +24,8 @@ export function mySplit(data, separator){
 
     return vector;
 }
+
+// função que verifica se em uma dada string existe um pedaço de texto
+export function stringContains(stringText, text){
+    
+}

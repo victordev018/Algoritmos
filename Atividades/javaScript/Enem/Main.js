@@ -3,7 +3,7 @@
 import {clearScreen, getNumberInRange, print} from "./utils/ioUtils.js"
 import { loadFile } from "./utils/fileUtils.js";
 import { dataToObjectArray } from "./utils/vectorUtils.js";
-import { topNByArea, topNNational } from "./features.js";
+import { topNByArea, topNNational, topNByState} from "./features.js";
 
 function main(){
 
@@ -59,6 +59,10 @@ function execute(option, list){
         case 2:
             // top N Brasil por área
             topNByArea(list);
+            break;
+        case 3:
+            // Top N por Estado
+            topNByState(list);
             break;
         case 11:
             // sair

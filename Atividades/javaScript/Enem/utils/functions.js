@@ -1,6 +1,20 @@
 // imports
+import { getText } from "./ioUtils.js";
 
 // funcionalidades gerais
+
+// função para obter área de estudo
+export function getArea(){
+    const areaLetter = getText(`
+        | escolha umas das seguintes areas:
+        | (L) linguagens
+        | (M) matematica
+        | (CN) ciencias da natureza
+        | (R) redacao
+        |> opcao: `);
+
+    return setAreaByLetter(areaLetter);
+}
 
 // função que recebe um texto e devolve a área de estudo
 export function setAreaByLetter(letter){

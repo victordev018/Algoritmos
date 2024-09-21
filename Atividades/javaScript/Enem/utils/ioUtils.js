@@ -35,3 +35,13 @@ export function getPositiveNumber(message){
 export function print(content){
     console.log(content);
 }
+
+// função para limpar tela
+export function clearScreen(){
+    console.clear();
+}
+
+// função que aguarda um enter para prosseguir
+export function pressEnterToContinue(message){
+    return question(message);
+}

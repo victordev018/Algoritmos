@@ -2,7 +2,7 @@
 
 import {clearScreen, getNumberInRange, print} from "./utils/ioUtils.js"
 import { loadFile } from "./utils/fileUtils.js";
-import { dataToObjectArray } from "./utils/vectorUtils.js";
+import { dataToObjectArray, showDatas } from "./utils/vectorUtils.js";
 
 function main(){
 
@@ -14,6 +14,7 @@ function main(){
         "linguagens", "matematica", "ciencias_natureza", "humanas",
         "redacao"];
     const allDataAsVectorOfObjects = dataToObjectArray(allDataAsVector, fields);
+    showDatas(allDataAsVectorOfObjects);
 
     // menu de consultas
     const menu = `

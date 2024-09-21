@@ -1,6 +1,7 @@
 // imports
-import { clearScreen, getPositiveNumber, pressEnterToContinue } from "./utils/ioUtils.js";
-import { showDatas ,copyXElements } from "./utils/vectorUtils.js";
+import { setAreaByLetter } from "./utils/functions.js";
+import { clearScreen, getPositiveNumber, getText, pressEnterToContinue } from "./utils/ioUtils.js";
+import { showDatas ,copyXElements, bubbleSort } from "./utils/vectorUtils.js";
 
 // funcionalidades de consultas
 
@@ -17,5 +18,29 @@ export function topNNational(list){
     
     // exibindo a lista dos topN
     showDatas(topNList);
+    pressEnterToContinue("\n> pressione enter para voltar...");
+}
+
+// opção 2 -> top N nacional por area
+export function topNByArea(list){
+
+    // solicitando área e o valor n
+    clearScreen();
+    const areaLetter = getText(`
+        | escolha umas das seguintes areas:
+        | (L) linguagens
+        | (M) matematica
+        | (CN) ciencias da natureza
+        | (R) redacao
+        |> opcao: `);
+
+    let areaChoose = setAreaByLetter(areaLetter);
+
+    const n = getPositiveNumber("\n> top N -> informe o N: ");
+
+    // criando uma lista ordenada com os maiores valores da área escolhida
+    let newList = bubbleSort(list, (obj) => obj[areaChoose], true);
+    newList = copyXElements(newList, n);
+    showDatas(newList);
     pressEnterToContinue("\n> pressione enter para voltar...");
 }

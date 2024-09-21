@@ -62,3 +62,33 @@ export function copyXElements(list, xValues){
     }
     return newList;
 }
+
+// função bubble sort que retorna uma lista ordenada por um critério e pode ordenar ASC ou DESC
+export function bubbleSort(list, criteria, reverse){
+
+    const newList = copyXElements(list, list.length);
+
+    for (let i = 0; i < newList.length - 1; i++){
+
+        for (let j = 0; j < newList.length - 1 - i; j++){
+
+            let currentValue = newList[j];
+            let nextValue = newList[j+1];
+
+            if (!reverse){
+                if (criteria(currentValue) > criteria(nextValue)){
+                    newList[j] = nextValue;
+                    newList[j+1] = currentValue;
+                }
+            }
+            else{
+
+                if (criteria(currentValue) < criteria(nextValue)){
+                    newList[j] = nextValue;
+                    newList[j+1] = currentValue;
+                }
+            }
+        }
+    }
+    return newList;
+}

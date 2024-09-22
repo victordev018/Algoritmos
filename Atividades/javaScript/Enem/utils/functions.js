@@ -55,23 +55,3 @@ export function getIncome(obj){
     if (text == "Muito baixo") return 2;
     if (text == "Sem informação") return 1;
 }
-
-export function besteira(list){
-    let li = []
-    for (let obj of list){
-        if (jaTem(li, obj["nivel_socio_economico"])){
-            continue
-        }
-        li.push(obj["nivel_socio_economico"])
-    }
-    return li;
-}
-
-function jaTem(list, element){
-    for (let e of list){
-        if (e == element){
-            return true;
-        }
-    }
-    return false;
-}

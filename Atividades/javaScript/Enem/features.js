@@ -135,3 +135,18 @@ export function listSchoolsPerIncome(list){
     showDatas(newList);
     pressEnterToContinue("\n> pressione enter  para voltar...");
 }
+
+// opção 8 -> buscar escola especifica por parte do nome
+export function listSchoolsPerName(list){
+
+    clearScreen();
+
+    // pegando parte do nome da escola
+    const schoolName = getText("\n> insira o nome da escola: ");
+
+    // pegando lista de escolas que possui o nome informado
+    let newList = list.filter(data => data["nome_instituicao"].toLowerCase().includes(schoolName.toLowerCase()));
+
+    showDatas(newList);
+    pressEnterToContinue("\n> pressione enter  para voltar...");
+}

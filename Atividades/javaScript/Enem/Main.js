@@ -4,7 +4,7 @@ import {clearScreen, getNumberInRange, pressEnterToContinue, print} from "./util
 import { loadFile } from "./utils/fileUtils.js";
 import { dataToObjectArray } from "./utils/vectorUtils.js";
 import { topNByArea, topNNational, topNByState, topNByStateAndNetwork, averageNationalPerArea, 
-theBestSchool, listSchoolsPerIncome, listSchoolsPerName} from "./features.js";
+theBestSchool, listSchoolsPerIncome, listSchoolsPerName, rankingEnemPerState} from "./features.js";
 
 function main(){
 
@@ -84,6 +84,10 @@ function execute(option, list){
         case 8:
             // buscar escola especifica por parte do nome
             listSchoolsPerName(list);
+            break;
+        case 9:
+            // ranking Enem por estado
+            rankingEnemPerState(list);
             break;
         case 11:
             // sair

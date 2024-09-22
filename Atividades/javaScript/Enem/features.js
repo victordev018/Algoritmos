@@ -150,3 +150,20 @@ export function listSchoolsPerName(list){
     showDatas(newList);
     pressEnterToContinue("\n> pressione enter  para voltar...");
 }
+
+// função 9 -> ranking Enem por estado
+export function rankingEnemPerState(list){
+    // solicitando estado e o valor n
+    clearScreen();
+    const stateUf = getText("\n> informe o uf do estado: ");
+
+    // lista filtrada com as escolas do dado estado
+    let newList = list.filter(data => data["uf"].toLowerCase().includes(stateUf.toLowerCase()));
+
+    print("\n|> obtemos " + newList.length + " resultados, N deve ser menor ou igaul a " + newList.length);
+    const n = getPositiveNumber("\n> top N -> informe o N: ");
+
+    newList = copyXElements(newList, n);
+    showDatas(newList);
+    pressEnterToContinue("\n> pressione enter para voltar...");
+}

@@ -1,5 +1,5 @@
 // imports
-import { getText } from "./ioUtils.js";
+import { getText, pressEnterToContinue, print } from "./ioUtils.js";
 
 // funcionalidades gerais
 
@@ -41,4 +41,37 @@ export function sumValuesPerField(list, field){
         sum += parseFloat(obj[field]);
     }
     return sum;
+}
+
+// função que retorna um valor para cada renda onde o valor mais alto é 8 e o menor é 1
+export function getIncome(obj){
+    let text = obj["nivel_socio_economico"];
+    if (text == "Muito Alto") return 8;
+    if (text == "Alto") return 7;
+    if (text == "Médio Alto") return 6;
+    if (text == "Médio") return 5;
+    if (text == "Médio Baixo") return 4;
+    if (text == "Baixo") return 3;
+    if (text == "Muito baixo") return 2;
+    if (text == "Sem informação") return 1;
+}
+
+export function besteira(list){
+    let li = []
+    for (let obj of list){
+        if (jaTem(li, obj["nivel_socio_economico"])){
+            continue
+        }
+        li.push(obj["nivel_socio_economico"])
+    }
+    return li;
+}
+
+function jaTem(list, element){
+    for (let e of list){
+        if (e == element){
+            return true;
+        }
+    }
+    return false;
 }

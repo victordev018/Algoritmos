@@ -1,5 +1,5 @@
 // imports
-import { getArea, sumValuesPerField } from "./utils/functions.js";
+import { getArea, getIncome, sumValuesPerField } from "./utils/functions.js";
 import { clearScreen, getPositiveNumber, getText, pressEnterToContinue, print } from "./utils/ioUtils.js";
 import { showDatas ,copyXElements, bubbleSort } from "./utils/vectorUtils.js";
 
@@ -118,4 +118,20 @@ export function theBestSchool(list){
     theBestSchool = [theBestSchool[0]];
     showDatas(theBestSchool);
     pressEnterToContinue("\n> pressione enter para voltar...");
+}
+
+// opção 7 -> istar escolas por estado ordenada por renda
+export function listSchoolsPerIncome(list){
+
+    clearScreen();
+
+    // solicitando estado
+    const stateUf = getText("\n> informe o uf do estado: ");
+
+    // pegando a lista filtrada por estado
+    let newList = list.filter(data => data["uf"].toLowerCase().includes(stateUf.toLowerCase()));
+    // ordenando lista por maior renda
+    newList = bubbleSort(newList, getIncome, true);
+    showDatas(newList);
+    pressEnterToContinue("\n> pressione enter  para voltar...");
 }

@@ -3,7 +3,9 @@
 import {clearScreen, getNumberInRange, pressEnterToContinue, print} from "./utils/ioUtils.js"
 import { loadFile } from "./utils/fileUtils.js";
 import { dataToObjectArray } from "./utils/vectorUtils.js";
-import { topNByArea, topNNational, topNByState, topNByStateAndNetwork, averageNationalPerArea, theBestSchool} from "./features.js";
+import { topNByArea, topNNational, topNByState, topNByStateAndNetwork, averageNationalPerArea, 
+theBestSchool, listSchoolsPerIncome} from "./features.js";
+import { besteira } from "./utils/functions.js";
 
 function main(){
 
@@ -15,6 +17,10 @@ function main(){
         "linguagens", "matematica", "ciencias_natureza", "humanas",
         "redacao"];
     const allDataAsVectorOfObjects = dataToObjectArray(allDataAsVector, fields);
+
+    let l = besteira(allDataAsVectorOfObjects);
+    print(l)
+    pressEnterToContinue("aaa")
 
     // menu de consultas
     const menu = `
@@ -75,6 +81,10 @@ function execute(option, list){
         case 6:
             // melhor escola por area e estado ou BR
             theBestSchool(list);
+            break;
+        case 7:
+            // istar escolas por estado ordenada por renda
+            listSchoolsPerIncome(list);
             break;
         case 11:
             // sair

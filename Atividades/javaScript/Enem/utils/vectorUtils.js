@@ -77,6 +77,8 @@ export function bubbleSort(list, criteria, reverse){
 
             if (!reverse){
                 if (criteria(currentValue) > criteria(nextValue)){
+                    // print("c1: " + criteria(currentValue) + " c2: " + criteria(nextValue))
+                    // pressEnterToContinue("pula")
                     newList[j] = nextValue;
                     newList[j+1] = currentValue;
                 }

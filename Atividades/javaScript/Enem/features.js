@@ -1,5 +1,5 @@
 // imports
-import { getArea } from "./utils/functions.js";
+import { getArea, sumValuesPerField } from "./utils/functions.js";
 import { clearScreen, getPositiveNumber, getText, pressEnterToContinue, print } from "./utils/ioUtils.js";
 import { showDatas ,copyXElements, bubbleSort } from "./utils/vectorUtils.js";
 
@@ -81,5 +81,17 @@ export function topNByStateAndNetwork(list){
     if (newList != null){
         showDatas(newList);
     }
+    pressEnterToContinue("\n> pressione enter para voltar...");
+}
+
+// opção 5 -> media nacional por area
+export function averageNationalPerArea(list){
+
+    clearScreen();
+    // solicitando a area para calcular media
+    const area = getArea();
+    const quantityData = list.length;
+    const avgMathematics = sumValuesPerField(list, area);
+    print("\n> media " + area+ ": " + `${(avgMathematics/quantityData).toFixed(2)}`);
     pressEnterToContinue("\n> pressione enter para voltar...");
 }

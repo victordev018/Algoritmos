@@ -3,7 +3,7 @@
 import {clearScreen, getNumberInRange, pressEnterToContinue, print} from "./utils/ioUtils.js"
 import { loadFile } from "./utils/fileUtils.js";
 import { dataToObjectArray } from "./utils/vectorUtils.js";
-import { topNByArea, topNNational, topNByState, topNByStateAndNetwork} from "./features.js";
+import { topNByArea, topNNational, topNByState, topNByStateAndNetwork, averageNationalPerArea} from "./features.js";
 
 function main(){
 
@@ -67,6 +67,10 @@ function execute(option, list){
         case 4:
             // top N por estado e rede
             topNByStateAndNetwork(list);
+            break;
+        case 5:
+            // media nacional por area
+            averageNationalPerArea(list);
             break;
         case 11:
             // sair

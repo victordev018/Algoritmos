@@ -33,3 +33,12 @@ export function setAreaByLetter(letter){
 
     return "redacao";
 }
+
+// função que soma valores por campo
+export function sumValuesPerField(list, field){
+    let sum = 0;
+    for (let obj of list){
+        sum += parseFloat(obj[field]);
+    }
+    return sum;
+}

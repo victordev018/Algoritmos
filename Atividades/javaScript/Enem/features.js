@@ -10,12 +10,10 @@ export function topNNational(list){
     
     // solicitando o valor n
     clearScreen();
+    const n = getPositiveNumber("\n> top N -> informe o N: ");
 
     // criando a nova lista dos top n a ser exibida
     const topNList = copyXElements(list, n);
-
-    print("\n|> obtemos " + newList.length + " resultados, N deve ser menor ou igaul a " + newList.length);
-    const n = getPositiveNumber("\n> top N -> informe o N: ");
     
     // exibindo a lista dos topN
     showDatas(topNList);
@@ -30,7 +28,7 @@ export function topNByArea(list){
     const areaChoose = getArea();
 
     // criando uma lista ordenada com os maiores valores da área escolhida
-    let newList = bubbleSort(list, (obj) => obj[areaChoose], true);
+    let newList = bubbleSort(list, (obj) => parseFloat(obj[areaChoose]), true);
 
     print("\n|> obtemos " + newList.length + " resultados, N deve ser menor ou igaul a " + newList.length);
     const n = getPositiveNumber("\n> top N -> informe o N: ");
@@ -93,5 +91,31 @@ export function averageNationalPerArea(list){
     const quantityData = list.length;
     const avgMathematics = sumValuesPerField(list, area);
     print("\n> media " + area+ ": " + `${(avgMathematics/quantityData).toFixed(2)}`);
+    pressEnterToContinue("\n> pressione enter para voltar...");
+}
+
+// opção 6 -> melhor escola por área e estado ou BR
+export function theBestSchool(list){
+
+    clearScreen();
+
+    // tomando a decisão se é por área ou estado
+    const option = getPositiveNumber("\n> 1 - melhor do Brasil\n> 2 - melhor por area e estado\n> escolha: ");
+
+    if (option == 1){
+        let theBestSchool = [list[0]];
+        showDatas(theBestSchool);
+        pressEnterToContinue("\n> pressione enter para voltar...");
+        return;
+    }
+
+    const area = getArea();
+    const stateUf = getText("\n> informe o uf do estado: ");
+
+    // pegando a melhor escola do dado estado em uma dada área
+    let theBestSchool = list.filter(data => data["uf"].toLowerCase().includes(stateUf.toLowerCase()));
+    theBestSchool = bubbleSort(theBestSchool, (obj) => parseFloat(obj[area]), true);
+    theBestSchool = [theBestSchool[0]];
+    showDatas(theBestSchool);
     pressEnterToContinue("\n> pressione enter para voltar...");
 }

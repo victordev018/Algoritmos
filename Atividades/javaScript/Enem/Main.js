@@ -3,7 +3,7 @@
 import {clearScreen, getNumberInRange, pressEnterToContinue, print} from "./utils/ioUtils.js"
 import { loadFile } from "./utils/fileUtils.js";
 import { dataToObjectArray } from "./utils/vectorUtils.js";
-import { topNByArea, topNNational, topNByState, topNByStateAndNetwork, averageNationalPerArea} from "./features.js";
+import { topNByArea, topNNational, topNByState, topNByStateAndNetwork, averageNationalPerArea, theBestSchool} from "./features.js";
 
 function main(){
 
@@ -24,7 +24,7 @@ function main(){
     | 3 - top N por estado
     | 4 - top N por estado e rede
     | 5 - media nacional por area
-    | 6 - melhor escolha por area e estado ou BR
+    | 6 - melhor escola por area e estado ou BR
     | 7 - listar escolas por estado ordenada por renda
     | 8 - buscar escola especifica por parte do nome
     | 9 - ranking Enem por estado
@@ -71,6 +71,10 @@ function execute(option, list){
         case 5:
             // media nacional por area
             averageNationalPerArea(list);
+            break;
+        case 6:
+            // melhor escola por area e estado ou BR
+            theBestSchool(list);
             break;
         case 11:
             // sair

@@ -1,6 +1,6 @@
 // imports
 import { clearScreen, getNumberInRange, print } from "./utils/ioUtils.js";
-import { createMovie, showAllMovies } from "./utils/movieCrud.js";
+import { createMovie, showAllMovies, updateMovie } from "./utils/movieCrud.js";
 
 // main
 
@@ -39,6 +39,7 @@ function main(){
                 break;
             case 3:
                 // atualizar filme
+                updateMovie(movieList);
                 break;
             case 4:
                 // remover filme

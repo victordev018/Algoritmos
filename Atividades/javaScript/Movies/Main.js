@@ -1,6 +1,6 @@
 // imports
 import { clearScreen, getNumberInRange, print } from "./utils/ioUtils.js";
-import { createMovie } from "./utils/movieCrud.js";
+import { createMovie, showAllMovies } from "./utils/movieCrud.js";
 
 // main
 
@@ -26,7 +26,7 @@ function main(){
 
         clearScreen();
         print(menu);
-        option = getNumberInRange("|> opcao: ", 0, 4);
+        option = getNumberInRange("\n> opcao: ", 0, 4);
 
         switch(option){
             case 1:
@@ -35,6 +35,7 @@ function main(){
                 break;
             case 2:
                 // ver todos os filme
+                showAllMovies(movieList);
                 break;
             case 3:
                 // atualizar filme
@@ -46,7 +47,7 @@ function main(){
                 return;
         }
 
-    }while(option != 0)
+    }while(option != 0);
 
 }
 

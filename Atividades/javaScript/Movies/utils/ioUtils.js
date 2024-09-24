@@ -24,6 +24,7 @@ export function getNumberInRange(message, min, max){
     while(number < min || number > max){
         number = getNumber("> Erro! informe um valor entre " + min + " e  " + max + ": ");
     }
+    return number;
 }
 
 export function getPositiveNumber(message){
@@ -31,4 +32,9 @@ export function getPositiveNumber(message){
     while(number < 0){
         number = getNumber("Erro! informe um valor positivo: ");
     }
+    return number;
+}
+
+export function pressEnterToContinue(message){
+    getText(message);
 }

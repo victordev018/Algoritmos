@@ -20,8 +20,15 @@ export function getNumber(message){
 }
 
 export function getNumberInRange(message, min, max){
-    let number = questionInt(message);
+    let number = getNumber(message);
     while(number < min || number > max){
-        number = questionInt("> Erro! informe um valor entre " + min + " e  " + max + ": ");
+        number = getNumber("> Erro! informe um valor entre " + min + " e  " + max + ": ");
+    }
+}
+
+export function getPositiveNumber(message){
+    let number = getNumber(message);
+    while(number < 0){
+        number = getNumber("Erro! informe um valor positivo: ");
     }
 }

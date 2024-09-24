@@ -1,5 +1,6 @@
 // imports
 import { clearScreen, getNumberInRange, print } from "./utils/ioUtils.js";
+import { createMovie } from "./utils/movieCrud.js";
 
 // main
 
@@ -19,6 +20,7 @@ function main(){
     // lendo opção e direcionando para funcionalidade
 
     let option;
+    const movieList = [];
 
     do{
 
@@ -29,6 +31,7 @@ function main(){
         switch(option){
             case 1:
                 // criar filme
+                createMovie(movieList);
                 break;
             case 2:
                 // ver todos os filme

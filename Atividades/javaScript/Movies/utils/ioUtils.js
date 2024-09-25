@@ -1,5 +1,5 @@
 // imports
-import {question, questionInt} from "readline-sync";
+import {question, questionFloat, questionInt} from "readline-sync";
 
 // funções úteis de entrada e saída
 
@@ -33,6 +33,10 @@ export function getPositiveNumber(message){
         number = getNumber("Erro! informe um valor positivo: ");
     }
     return number;
+}
+
+export function getFloatNumber(message){
+    return questionFloat(message);
 }
 
 export function pressEnterToContinue(message){

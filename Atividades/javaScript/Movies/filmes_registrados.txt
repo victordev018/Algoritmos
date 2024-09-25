@@ -1,0 +1,9 @@
+1,cidade de Deus,2002,3,8
+2,o poderoso chefão,1972,245,9.2
+3,pulp fiction,1994,214,8.9
+4,forrest gump,1994,678,8.8
+5,matrix,1999,463,8.7
+6,o senhor dos anéis: a sociedade do anel,2001,887,8.8
+7,um sonho de liberdade,1994,58,9.3
+8,o silêncioso dos inocentes,1991,272,8.6
+9,escritores da liberdade,2007,43,7.5

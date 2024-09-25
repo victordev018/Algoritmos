@@ -110,3 +110,19 @@ export function removeMovie(list){
     pressEnterToContinue("| filme removido com sucesso!\n| Pressione enter para voltar...");
     return list;
 }
+
+// função para preencher o vetor de filmes com os dados vindo de um outro vetor
+export function fillVector(arrayData, fields){
+
+    const arrayObjects = [];
+    const steps = fields.length;
+
+    for (let i = 0; i < arrayData.length; i += steps){
+        let obj = {};
+        for (let j = 0 ; j < steps; j++){
+            obj[fields[j]] = arrayData[j+i];
+        }
+        arrayObjects.push(obj);
+    }
+    return arrayObjects;
+}

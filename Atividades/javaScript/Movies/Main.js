@@ -1,6 +1,8 @@
 // imports
+import { loadFile } from "./utils/fileUtil.js";
 import { clearScreen, getNumberInRange, print, pressEnterToContinue} from "./utils/ioUtils.js";
-import { createMovie, showAllMovies, updateMovie, removeMovie } from "./utils/movieCrud.js";
+import { createMovie, showAllMovies, updateMovie, removeMovie, fillVector } from "./utils/movieCrud.js";
+import { mySplit } from "./utils/vectorUtils.js";
 
 // main
 
@@ -20,7 +22,14 @@ function main(){
     // lendo opção e direcionando para funcionalidade
 
     let option;
+
+    // precarregando vetor com os dados do arquivo
     let movieList = [];
+    const dataAsCharacters = loadFile("./filmes_registrados.txt");
+    if (dataAsCharacters.length > 0){
+        const dataAsVector = mySplit(dataAsCharacters, ",");
+        movieList = fillVector(dataAsVector, ["id", "nome", "ano", "bilheteria", "imdb"]);
+    }
 
     do{
 

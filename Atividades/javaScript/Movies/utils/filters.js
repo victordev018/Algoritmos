@@ -38,6 +38,7 @@ export function filterByAttribute(list){
             break;
         case 3:
             // por filmes com imdb maiores que x
+            perImdb(list);
             break;
         case 4:
             // filmes com a mesma bilheteria
@@ -65,10 +66,25 @@ function perYear(list){
     clearScreen();
 
     // solicitando ano que usuário deseja fazer a busca
-    const year = getPositiveNumber("--> informe o ano x para busca: ");
+    const minYear = getPositiveNumber("--> informe o ano x para busca: ");
 
     // filtrando a lista com os filmes que foram lançados no mesmo ou nos anos seguintes baseado no ano informado
-    const filteredList = list.filter( obj => obj["ano"] >= year);
+    const filteredList = list.filter( obj => obj["ano"] >= minYear);
+
+    // exibindo nova lista
+    showAllMovies(filteredList);
+    pressEnterToContinue("\n| pressione enter para voltar...");
+}
+
+// opção 3 -> por filmes com imdb maiores que x
+function perImdb(list){
+    clearScreen();
+
+    // solicitando valor imdb que usuário deseja fazer a busca
+    const minImdb = getPositiveNumber("--> informe a nota minina imdb para busca: ");
+
+    // filtrando a lista com os filmes que tem nota imdb maior ou igual ao que o usuário informou
+    const filteredList = list.filter( obj => obj["imdb"] >= minImdb);
 
     // exibindo nova lista
     showAllMovies(filteredList);

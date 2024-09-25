@@ -7,4 +7,3 @@
 7,um sonho de liberdade,1994,58,9.3
 8,o silêncioso dos inocentes,1991,272,8.6
 9,escritores da liberdade,2007,43,7.5
-10,os caras de boa,2009,23,8

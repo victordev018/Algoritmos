@@ -1,5 +1,5 @@
 // imports
-import { clearScreen, getNumberInRange, getText, pressEnterToContinue, print } from "./ioUtils.js";
+import { clearScreen, getNumberInRange, getPositiveNumber, getText, pressEnterToContinue, print } from "./ioUtils.js";
 import { showAllMovies } from "./movieCrud.js";
 
 
@@ -19,7 +19,7 @@ export function filterByAttribute(list){
     const typeFilter = getNumberInRange(`
     |----------- tipo de filtro -----------
     | 1 - por nome
-    | 2 - por ano
+    | 2 - por mais recentes depois do ano x
     | 3 - por filmes com imdb maiores que x
     | 4 - da mesma bilheteria
     |
@@ -33,7 +33,8 @@ export function filterByAttribute(list){
             perName(list);
             break;
         case 2:
-            // por ano
+            //por mais recentes depois do ano x
+            perYear(list);
             break;
         case 3:
             // por filmes com imdb maiores que x
@@ -53,6 +54,21 @@ function perName(list){
 
     // filtrando a lista com os filmes que contenha este nome informado no seu campo nome
     const filteredList = list.filter( obj => obj["nome"].includes(name));
+
+    // exibindo nova lista
+    showAllMovies(filteredList);
+    pressEnterToContinue("\n| pressione enter para voltar...");
+}
+
+// opção 2 -> por mais recentes depois do ano x
+function perYear(list){
+    clearScreen();
+
+    // solicitando ano que usuário deseja fazer a busca
+    const year = getPositiveNumber("--> informe o ano x para busca: ");
+
+    // filtrando a lista com os filmes que foram lançados no mesmo ou nos anos seguintes baseado no ano informado
+    const filteredList = list.filter( obj => obj["ano"] >= year);
 
     // exibindo nova lista
     showAllMovies(filteredList);

@@ -1,5 +1,5 @@
 // imports
-import { loadFile } from "./utils/fileUtil.js";
+import { loadFile, saveData} from "./utils/fileUtil.js";
 import { clearScreen, getNumberInRange, print, pressEnterToContinue} from "./utils/ioUtils.js";
 import { createMovie, showAllMovies, updateMovie, removeMovie, fillVector } from "./utils/movieCrud.js";
 import { mySplit } from "./utils/vectorUtils.js";
@@ -16,6 +16,7 @@ function main(){
     |> 2 - ver todos os filmes
     |> 3 - atualizar filmes
     |> 4 - apagar filme
+    |> 5 - salvar dados
     |> 0 - sair
     |-----------------------------------------|`;
 
@@ -28,8 +29,6 @@ function main(){
     const dataAsCharacters = loadFile("./filmes_registrados.txt");
     if (dataAsCharacters.length > 0){
         const dataAsVector = mySplit(dataAsCharacters, ",");
-        console.log(dataAsVector)
-        pressEnterToContinue("aaa")
         movieList = fillVector(dataAsVector, ["id", "nome", "ano", "bilheteria", "imdb"]);
     }
 
@@ -37,7 +36,7 @@ function main(){
 
         clearScreen();
         print(menu);
-        option = getNumberInRange("\n> opcao: ", 0, 4);
+        option = getNumberInRange("\n> opcao: ", 0, 5);
 
         switch(option){
             case 1:
@@ -56,6 +55,10 @@ function main(){
             case 4:
                 movieList = removeMovie(movieList);
                 // remover filme
+                break;
+            case 5:
+                // salvar dados em filmes_registrados.txt
+                saveData(movieList);
                 break;
             case 0:
                 return;

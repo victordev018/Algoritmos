@@ -48,3 +48,18 @@ export function getNextId(list){
     // retorna o valor do próximo id (auto increment)
     return lastId+1;
 }
+
+// função que converte dados de um vetor de de objetos para strings, cada objeto em uma linha 
+// e cada atributo de objeto separado por uma vírgula
+export function vectorToString(arrayObjects){
+    let textFinal = "";
+    for (let obj of arrayObjects){
+        let id = obj["id"];
+        let name = obj["nome"];
+        let ano = obj["ano"];
+        let bilheteria = obj["bilheteria"];
+        let imdb = obj["imdb"];
+        textFinal += id + "," + name + "," + ano + "," + bilheteria + "," + imdb + "\n";
+    }
+    return textFinal.trim();
+}

@@ -28,6 +28,8 @@ function main(){
     const dataAsCharacters = loadFile("./filmes_registrados.txt");
     if (dataAsCharacters.length > 0){
         const dataAsVector = mySplit(dataAsCharacters, ",");
+        console.log(dataAsVector)
+        pressEnterToContinue("aaa")
         movieList = fillVector(dataAsVector, ["id", "nome", "ano", "bilheteria", "imdb"]);
     }
 

@@ -30,3 +30,21 @@ export function mySplit(content, separator){
     }
     return vector;
 }
+
+// função que retorna o valor do próximo a id a ser cadastrado baseado no último id cadastrado 
+export function getNextId(list){
+
+    // se a lista não ter nenhum elemneto, o id a ser cadastrado é 1 por ser o primeiro registro
+    if (list.length < 1){
+        return 1;
+    }
+
+    // coleta o index do último elemento cadastrado
+    const lastIndex = list.length - 1;
+
+    // obtém o valor do campo 'id' do útimo cadastro
+    let lastId = list[lastIndex]["id"];
+
+    // retorna o valor do próximo id (auto increment)
+    return lastId+1;
+}

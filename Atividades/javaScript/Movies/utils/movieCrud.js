@@ -1,6 +1,6 @@
 // imports
 import { clearScreen, getNumberInRange, getPositiveNumber, getText, pressEnterToContinue, print } from "./ioUtils.js";
-import { deleteElementWithId } from "./vectorUtils.js";
+import { deleteElementWithId, getNextId } from "./vectorUtils.js";
 
 // funções de crud para os filmes
 
@@ -8,9 +8,13 @@ export function createMovie(list){
 
     clearScreen();
     // atributos de um filme: nome, ano, bilheteria e imdb
+
+    // obtendo próximo id baseado no id do cadastro anterior (auto increment)
+    const nextid = getNextId(list);
+
     print("\n|----------- dados filmes -----------");
     list.push({
-        "id" : list.length + 1,
+        "id" : nextid,
         "nome" : getText("|> nome: "),
         "ano" : getPositiveNumber("|> ano de lancamento: "),
         "bilheteria" : getText("|> arrecadacao: "),
@@ -82,7 +86,7 @@ export function updateMovie(list){
         "id" : list[indexMovie]["id"],
         "nome" : getText("|> nome: "),
         "ano" : getPositiveNumber("|> ano de lancamento: "),
-        "bilheteria" : getText("|> arrecadacao: "),
+        "bilheteria" : getPositiveNumber("|> arrecadacao: "),
         "imdb" : getNumberInRange("|> nota na IMDB: ", 0, 10)
     }
 
@@ -120,7 +124,16 @@ export function fillVector(arrayData, fields){
     for (let i = 0; i < arrayData.length; i += steps){
         let obj = {};
         for (let j = 0 ; j < steps; j++){
-            obj[fields[j]] = arrayData[j+i];
+
+            let currentData = arrayData[j+i];
+            let currentField = fields[j];
+
+            // se otual campo for um campo que recebe número, fazer o casting do dado para Number
+            if (currentField != "nome"){
+                currentData = Number(currentData);
+            }
+
+            obj[currentField] = currentData;
         }
         arrayObjects.push(obj);
     }

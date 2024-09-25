@@ -1,6 +1,7 @@
 // imports
 import { clearScreen, getNumberInRange, getPositiveNumber, getText, pressEnterToContinue, print } from "./ioUtils.js";
 import { showAllMovies } from "./movieCrud.js";
+import { hasElement } from "./vectorUtils.js";
 
 
 // funções de filtragens
@@ -42,6 +43,7 @@ export function filterByAttribute(list){
             break;
         case 4:
             // filmes com a mesma bilheteria
+            perBilheteria(list);
             break;
     }
 }
@@ -89,4 +91,37 @@ function perImdb(list){
     // exibindo nova lista
     showAllMovies(filteredList);
     pressEnterToContinue("\n| pressione enter para voltar...");
+}
+
+// opção 4 -> filmes com a mesma bilheteria
+function perBilheteria(list){
+    clearScreen();
+
+    // exibindo bilheterias que distintas que possui cadastradas
+    const allBilheterias = getAllBilheterias(list);
+    print("| -> lista de bilheterias cadastradas:");
+    print(allBilheterias);
+
+    // solicitando o número de bilheteria que o usuário deseja fazer a busca
+    const numBilheteria = getPositiveNumber("\n--> informe o numero da arecadacao para busca: ");
+
+    // filtrando a lista com os filmes possui o mesmo valor de bilheteria que o usuário informou
+    const filteredList = list.filter( obj => obj["bilheteria"] == numBilheteria);
+
+    // exibindo nova lista
+    showAllMovies(filteredList);
+    pressEnterToContinue("\n| pressione enter para voltar...");
+}
+
+// função que retorna uma lista com todas as bilhterias diferentes cadastradas em uma lista de filmes
+function getAllBilheterias(list){
+    const listBilheteria = [];
+    for (let obj of list){
+        let currentBilheteria = obj["bilheteria"];
+        if (hasElement(listBilheteria, currentBilheteria)){
+            continue;
+        }
+        listBilheteria.push(currentBilheteria);
+    }
+    return listBilheteria;
 }

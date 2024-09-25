@@ -63,3 +63,13 @@ export function vectorToString(arrayObjects){
     }
     return textFinal.trim();
 }
+
+// função que verifica se em um dado vetor possui um dado elemento
+export function hasElement(list, elemnent){
+    for (let e of list){
+        if (e == elemnent){
+            return true;
+        }
+    }
+    return false;
+}

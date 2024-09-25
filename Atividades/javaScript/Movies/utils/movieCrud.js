@@ -1,5 +1,6 @@
 // imports
 import { clearScreen, getNumberInRange, getPositiveNumber, getText, pressEnterToContinue, print } from "./ioUtils.js";
+import { deleteElementWithId } from "./vectorUtils.js";
 
 // funções de crud para os filmes
 
@@ -53,8 +54,6 @@ export function showAllMovies(list){
         print("| nota IMDB      : " + obj["imdb"]);
         print("------------------------------------");
     }
-
-    pressEnterToContinue("\n| Pressione enter para continuar...");
 }
 
 export function updateMovie(list){
@@ -89,4 +88,25 @@ export function updateMovie(list){
 
     pressEnterToContinue("| atualizado com sucesso!\n| Pressione enter para continuar...");
 
+}
+
+export function removeMovie(list){
+
+    clearScreen();
+    const quantityMovies = list.length;
+    
+    if (quantityMovies < 1){
+        pressEnterToContinue("\n| Erro! a lista esta vazia...");
+        return;
+    }
+
+    // exibindo todos os filmes
+    showAllMovies(list);
+
+    // deletando filme por id
+    const id = getPositiveNumber("\n|> id do filme: ");
+
+    list = deleteElementWithId(list, id);
+    pressEnterToContinue("| filme removido com sucesso!\n| Pressione enter para voltar...");
+    return list;
 }

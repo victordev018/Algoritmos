@@ -1,6 +1,6 @@
 // imports
-import { clearScreen, getNumberInRange, print } from "./utils/ioUtils.js";
-import { createMovie, showAllMovies, updateMovie } from "./utils/movieCrud.js";
+import { clearScreen, getNumberInRange, print, pressEnterToContinue} from "./utils/ioUtils.js";
+import { createMovie, showAllMovies, updateMovie, removeMovie } from "./utils/movieCrud.js";
 
 // main
 
@@ -20,7 +20,7 @@ function main(){
     // lendo opção e direcionando para funcionalidade
 
     let option;
-    const movieList = [];
+    let movieList = [];
 
     do{
 
@@ -36,12 +36,14 @@ function main(){
             case 2:
                 // ver todos os filme
                 showAllMovies(movieList);
+                pressEnterToContinue("\n| Pressione enter para continuar...");
                 break;
             case 3:
                 // atualizar filme
                 updateMovie(movieList);
                 break;
             case 4:
+                movieList = removeMovie(movieList);
                 // remover filme
                 break;
             case 0:
